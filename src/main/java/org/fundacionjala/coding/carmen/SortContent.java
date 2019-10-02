@@ -4,9 +4,7 @@ import java.util.Arrays;
 
 final class SortContent {
 
-    private SortContent() {
-        throw new IllegalStateException("SorInnerClass class");
-    }
+    private SortContent() {    }
 
     public static String sortTheInnerContent(final String sentenceInput) {
         String[] sentence = sentenceInput.split(" ");
