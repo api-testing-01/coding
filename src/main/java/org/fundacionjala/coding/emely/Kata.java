@@ -2,15 +2,19 @@ package org.fundacionjala.coding.emely;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.StringJoiner;
 
 public class Kata {
+    private Kata(){
+
+    }
 
     public static String sortTheInnerContent(String words)
     {
         String[] allWords = words.split(" ");
         char[] charArray;
         char[] sortedArray;
-        String sortedInnerSentence = "";
+        StringJoiner sortedInnerSentence = new StringJoiner(" ");
 
         for (int i=0; i<allWords.length; i++){
             ArrayList<Character> inner = new ArrayList<>();
@@ -27,9 +31,10 @@ public class Kata {
             }
             sortedArray[sortedArray.length-1] = charArray[charArray.length-1];
             sortedInner = String.valueOf(sortedArray);
-            sortedInnerSentence += sortedInner + " ";
+            sortedInnerSentence.add(sortedInner);
+            //sortedInnerSentence += sortedInner + " ";
         }
-        words = sortedInnerSentence.trim();
+        words = sortedInnerSentence.toString();
         return words;
     }
 }
