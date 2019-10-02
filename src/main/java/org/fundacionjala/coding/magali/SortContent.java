@@ -1,4 +1,5 @@
 package org.fundacionjala.coding.magali;
+
 import java.util.Arrays;
 
 public final class SortContent {
@@ -6,15 +7,16 @@ public final class SortContent {
     private static final int WORD_LENGTH = 3;
 
     private SortContent() {
+        throw new IllegalStateException("Utility class");
     }
 
     public static String sortTheInnerContent(final String words) {
         String[] wordArray = words.split(" ");
         String[] wordSorted = new String[wordArray.length];
-        int i = 0;
-        for (String word: wordArray) {
-            if (word.length() > WORD_LENGTH) {
-                String sortedWord = word.substring(1, word.length() - 1);
+
+        for (int i = 0; i < wordArray.length; i++) {
+            if (wordArray[i].length() > WORD_LENGTH) {
+                String sortedWord = wordArray[i].substring(1, wordArray[i].length() - 1);
                 char[] sortedChars = sortedWord.toCharArray();
                 Arrays.sort(sortedChars);
 
@@ -25,11 +27,12 @@ public final class SortContent {
                     sortedChars[index] = tmp;
                 }
 
-                wordSorted[i] = word.charAt(0) + new String(sortedChars) + word.charAt(word.length() - 1);
+                wordSorted[i] = wordArray[i].charAt(0) + new String(sortedChars)
+                        + wordArray[i].charAt(wordArray[i].length() - 1);
             } else {
-                wordSorted[i] = word;
+                wordSorted[i] = wordArray[i];
             }
-            i++;
+
         }
         return String.join(" ", wordSorted);
     }
