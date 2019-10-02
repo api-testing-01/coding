@@ -6,7 +6,6 @@ public class SortTheInnerContent {
     public String sortTheInnerContent(final String sentence) {
         final int minumumWords = 3;
         String[] words = sentence.split(" ");
-        System.out.println(sentence);
         for (int i = 0; i < words.length; i++) {
             int wordSize = words[i].length();
             if (wordSize > minumumWords) {
