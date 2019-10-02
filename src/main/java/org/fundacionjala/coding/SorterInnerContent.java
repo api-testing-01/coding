@@ -3,7 +3,7 @@ package org.fundacionjala.coding;
 public class SorterInnerContent {
     public static final int MINIMUM_LENGHT_OF_WORD = 3;
 
-    public String sortInnerContent(String text) {
+    public String sortInnerContent(final String text) {
         String result = "";
         String[] words = text.split(" ");
         for (int i = 0; i < words.length; i++) {
@@ -18,7 +18,7 @@ public class SorterInnerContent {
         return result;
     }
 
-    private StringBuilder sortDescending(StringBuilder text) {
+    private StringBuilder sortDescending(final StringBuilder text) {
         StringBuilder sorted = new StringBuilder();
         sorted.append(text.charAt(0));
         for (int j = 1; j < text.length(); j++) {
