@@ -7,12 +7,12 @@ import java.util.List;
 final class SortTheInnerContent {
     private SortTheInnerContent() {
     }
-    public static final int flag = 3;
+    public static final int LimitFlag = 3;
     public static String sortTheInnerContent(String words) {
         List<String> listOfWords = Arrays.asList(words.split(" "));
         words = "";
         for (String tempWord : listOfWords) {
-            if (tempWord.length() <= flag) {
+            if (tempWord.length() <= LimitFlag) {
                 words += tempWord + " ";
             } else {
                 ArrayList<String> tempLetters = new ArrayList<>(Arrays.asList(tempWord.split("")));
