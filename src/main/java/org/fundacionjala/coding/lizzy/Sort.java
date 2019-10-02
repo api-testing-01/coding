@@ -1,14 +1,17 @@
 package org.fundacionjala.coding.lizzy;
 
-public class Sort {
-    public static String sortTheInnerContent(String sentence)
-    {
+public final class Sort {
+    private Sort() {
+
+    }
+
+    public static String sortTheInnerContent(final String sentence) {
         String[] words = sentence.split(" ");
         StringBuilder sorted = new StringBuilder();
         for (String word: words) {
             String first = word.substring(0, 1);
-            String last = word.substring(word.length() -1);
-            StringBuilder middle = new StringBuilder(word.substring(1, word.length() -1));
+            String last = word.substring(word.length() - 1);
+            StringBuilder middle = new StringBuilder(word.substring(1, word.length() - 1));
             for (int i = 0; i < middle.length() - 1; i++) {
                 for (int j = i + 1; j < middle.length(); j++) {
                     if (middle.charAt(i) < middle.charAt(j)) {
