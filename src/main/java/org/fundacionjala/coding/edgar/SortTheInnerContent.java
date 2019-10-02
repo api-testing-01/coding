@@ -1,40 +1,31 @@
 package org.fundacionjala.coding.edgar;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.Collections;
-import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 final class SortTheInnerContent {
     private SortTheInnerContent() {
     }
-    public static final int l = 3;
-    public static String sortTheInnerContent(String words) {
-        List<String> listOfWords = Arrays.asList(words.split(" "));
-        words = "";
-        for (String tempWord : listOfWords) {
-            if (tempWord.length() <= l) {
-                words += tempWord + " ";
-            } else {
-                ArrayList<String> tempLetters = new ArrayList<>(Arrays.asList(tempWord.split("")));
-                String firstLetter = tempLetters.get(0);
-               String lastLetter = tempLetters.get(tempLetters.size() - 1);
 
-                tempLetters.remove(0);
-                tempLetters.remove(tempLetters.size() - 1);
-                Collections.sort(tempLetters);
-                Collections.reverse(tempLetters);
+    private static final int Limit = 3;
 
-                String partOfWord = "";
-                for (String letter : tempLetters) {
-                    partOfWord += letter;
-                }
+    static String sortTheInnerContent(String words) {
+        String[] arrayWords = words.split(" ");
+        StringBuilder newWord = new StringBuilder();
 
-                tempWord = firstLetter + partOfWord + lastLetter;
-
-                words += tempWord + " ";
-            }
+        for (String str : arrayWords) {
+            String temp = "";
+            if (str.length() > Limit) {
+                char[] letter = str.toCharArray();
+                String reorderContent = str.substring(1, str.length() - 1).chars().mapToObj(e -> (char) e)
+                        .sorted(Collections.reverseOrder()).collect(Collectors.toList()).stream()
+                        .map(Objects::toString).collect(Collectors.joining(""));
+                temp = letter[0] + reorderContent + letter[letter.length - 1] + " ";
+            } else temp += str + " ";
+            newWord.append(temp);
         }
-        return words.trim();
+        return newWord.toString().trim();
     }
 
 }
