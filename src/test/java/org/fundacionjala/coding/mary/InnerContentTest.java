@@ -15,7 +15,6 @@ public class InnerContentTest {
      */
     @Test
     public void innerContentTests() {
-//        String nullString = null;
         Assert.assertEquals("srot the inner ctonnet in dsnnieedcg oredr", InnerContent.sortTheInnerContent(
                 "sort the inner content in descending order"));
         assertEquals("wiat for me", InnerContent.sortTheInnerContent("wait for me"));
