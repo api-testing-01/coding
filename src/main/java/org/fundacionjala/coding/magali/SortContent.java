@@ -7,7 +7,7 @@ public final class SortContent {
     private static final int WORD_LENGTH = 3;
 
     private SortContent() {
-        throw new IllegalStateException("Utility class");
+
     }
 
     public static String sortTheInnerContent(final String words) {
