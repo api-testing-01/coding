@@ -2,9 +2,13 @@ package org.fundacionjala.coding.edgar;
 
 import java.util.*;
 
-public class sortTheInnerContentClass {
+public class SortTheInnerContent {
+    private SortTheInnerContent() {
+    }
+
     public static String sortTheInnerContent(String words) {
         List<String> listOfWords = Arrays.asList(words.split(" "));
+
         words = "";
         for (String tempWord : listOfWords) {
             if (tempWord.length() <= 3) {
