@@ -1,14 +1,19 @@
 package org.fundacionjala.coding.magali;
-import java.util.*;
+import java.util.Arrays;
 
 public class SortContent {
+
+    private static final int WORD_LENGTH = 3;
+
+    private SortContent() {
+    }
 
     public static String sortTheInnerContent(String words) {
         String[] wordArray = words.split(" ");
         String[] wordSorted = new String[wordArray.length];
         int i = 0;
         for (String word: wordArray) {
-            if (word.length() > 3) {
+            if (word.length() > WORD_LENGTH) {
                 String sortedWord = word.substring(1, word.length() - 1);
                 char[] sortedChars = sortedWord.toCharArray();
                 Arrays.sort(sortedChars);
