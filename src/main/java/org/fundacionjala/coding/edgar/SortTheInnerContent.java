@@ -1,7 +1,4 @@
 package org.fundacionjala.coding.edgar;
-
-//import java.util.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,15 +7,14 @@ import java.util.List;
 final class SortTheInnerContent {
     private SortTheInnerContent() {
     }
-
+    public static final int flag = 3;
     public static String sortTheInnerContent(String words) {
         List<String> listOfWords = Arrays.asList(words.split(" "));
         words = "";
-        int flag = 3;
         for (String tempWord : listOfWords) {
             if (tempWord.length() <= flag) {
                 words += tempWord + " ";
-            }else {
+            } else {
                 ArrayList<String> tempLetters = new ArrayList<>(Arrays.asList(tempWord.split("")));
                 String firstLetter = tempLetters.get(0);
                String lastLetter = tempLetters.get(tempLetters.size() - 1);
