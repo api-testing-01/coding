@@ -3,7 +3,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class SortTheInnerContentTest {
-    
+
     @Test
     public void sortTheInnerContentTest() {
         assertEquals(
