@@ -1,14 +1,14 @@
 package org.fundacionjala.coding.magali;
 import java.util.Arrays;
 
-public class SortContent {
+public final class SortContent {
 
     private static final int WORD_LENGTH = 3;
 
     private SortContent() {
     }
 
-    public static String sortTheInnerContent(String words) {
+    public static String sortTheInnerContent(final String words) {
         String[] wordArray = words.split(" ");
         String[] wordSorted = new String[wordArray.length];
         int i = 0;
