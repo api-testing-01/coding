@@ -15,9 +15,13 @@ public class InnerContentTest {
      */
     @Test
     public void innerContentTests() {
+//        String nullString = null;
         Assert.assertEquals("srot the inner ctonnet in dsnnieedcg oredr", InnerContent.sortTheInnerContent(
                 "sort the inner content in descending order"));
         assertEquals("wiat for me", InnerContent.sortTheInnerContent("wait for me"));
         assertEquals("tihs ktaa is esay", InnerContent.sortTheInnerContent("this kata is easy"));
+        assertEquals("Entered empty string", InnerContent.sortTheInnerContent(""));
+        assertEquals("Entered null string", InnerContent.sortTheInnerContent(null));
+
     }
 }
