@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class SortTheInnerContent {
     public String sortTheInnerContent(final String sentence) {
-        int minumumWords = 3;
+        final int minumumWords = 3;
         String[] words = sentence.split(" ");
         System.out.println(sentence);
         for (int i = 0; i < words.length; i++) {
