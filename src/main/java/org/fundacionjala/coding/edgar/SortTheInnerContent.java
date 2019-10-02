@@ -22,7 +22,7 @@ final class SortTheInnerContent {
                         .sorted(Collections.reverseOrder()).collect(Collectors.toList()).stream()
                         .map(Objects::toString).collect(Collectors.joining(""));
                 temp = letter[0] + reorderContent + letter[letter.length - 1] + " ";
-            } else{
+            } else {
                 temp += str + " ";
             }
             newWord.append(temp);
