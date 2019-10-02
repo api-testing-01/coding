@@ -1,13 +1,15 @@
 package org.fundacionjala.coding.carlos;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class SpinWords {
-	public String spinWords(String sentence) {
-		String[] words = sentence.split(" ");
-		for (int i = 0; i < words.length; i++) {
-			if (words[i].length() >= 5) {
-				words[i] = new StringBuilder(words[i]).reverse().toString();
-			}
-		}
-		return String.join(" ", words);
-	}
+
+    private static final int LIMIT_SPIN_WORD = 5;
+
+    public String spinWords(final String sentence) {
+        return Arrays.stream(sentence.split(" "))
+                .map(word -> word.length() >= LIMIT_SPIN_WORD ? new StringBuilder(word).reverse().toString() : word)
+                .collect(Collectors.joining(" "));
+    }
 }
