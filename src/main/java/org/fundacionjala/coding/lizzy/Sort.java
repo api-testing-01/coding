@@ -22,9 +22,4 @@ public class Sort {
         }
         return sorted.toString().trim();
     }
-
-    public static void main(String[] args) {
-        String result = sortTheInnerContent("lizzy mendivil");
-        System.out.println(result);
-    }
 }
