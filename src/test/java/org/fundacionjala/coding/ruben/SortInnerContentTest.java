@@ -3,11 +3,14 @@ package org.fundacionjala.coding.ruben;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-public class SolutionTest {
+public class SortInnerContentTest {
     @Test
-    public void exampleTests() {
-        assertEquals("srot the inner ctonnet in dsnnieedcg oredr", Sort.sortTheInnerContent("sort the inner content in descending order"));
-        assertEquals("wiat for me", Sort.sortTheInnerContent("wait for me"));
-        assertEquals("tihs ktaa is esay", Sort.sortTheInnerContent("this kata is easy"));
+    public void sentenceWithSpaceRegex() {
+        assertEquals("srot the inner ctonnet in dsnnieedcg oredr ", Sort.validateSentence("sort the inner content in descending order", " "));
+    }
+
+    @Test
+    public void sentenceWithAnotherRegex(){
+        assertEquals("wiat-for-me-", Sort.validateSentence("wait-for-me", "-"));
     }
 }
