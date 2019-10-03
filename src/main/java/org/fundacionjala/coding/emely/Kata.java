@@ -32,7 +32,6 @@ public class Kata {
             sortedArray[sortedArray.length-1] = charArray[charArray.length-1];
             sortedInner = String.valueOf(sortedArray);
             sortedInnerSentence.add(sortedInner);
-            //sortedInnerSentence += sortedInner + " ";
         }
         words = sortedInnerSentence.toString();
         return words;
