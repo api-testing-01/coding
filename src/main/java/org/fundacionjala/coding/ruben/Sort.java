@@ -1,6 +1,10 @@
 package org.fundacionjala.coding.ruben;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 final class Sort {
+
+    private static final Logger LOGGER = Logger.getLogger(Sort.class.getName());
 
     private Sort() {
         //not called
@@ -24,14 +28,15 @@ final class Sort {
             }
             newWord.append(firstLetter).append(innerLetters.toString()).append(lastLetter).append(regex);
         }
-        return String.join(regex, newWord);
+        return newWord.substring(0, newWord.length() - 1);
     }
 
     public static String validateSentence(final String sentence, final String regex) {
-        if (sentence.isEmpty()) {
-            System.out.println("error, sentence is empty");
-        } else {
+
+        if (sentence.length() > 2) {
             sortTheInnerContent(sentence, regex);
+        } else {
+            LOGGER.log(Level.WARNING, "Please enter a complete sentence");
         }
         return sortTheInnerContent(sentence, regex);
     }
