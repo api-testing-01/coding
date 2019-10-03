@@ -14,7 +14,7 @@ import static org.junit.Assert.assertTrue;
 public class SortInnerContentTest {
 
     class LogHandler extends Handler {
-        private Level lastLevel = Level.FINEST;
+        private Level lastLevel = Level.WARNING;
 
         public Level  checkLevel() {
             return lastLevel;
@@ -24,8 +24,14 @@ public class SortInnerContentTest {
             lastLevel = record.getLevel();
         }
 
-        public void close() { }
-        public void flush() { }
+        public void flush() {
+            // method used by the handler
+        }
+
+        public void close() throws SecurityException {
+            // method used by the handler
+        }
+
     }
 
     @Test
@@ -52,7 +58,7 @@ public class SortInnerContentTest {
         logger.setUseParentHandlers(false);
         logger.addHandler(handler);
         logger.setLevel(Level.WARNING);
-        int sentenceLength = Sort.validateSentence("ab", " ").length();
+        Sort.validateSentence("ab", " ").length();
         assertEquals("Please enter a complete sentence", logger.getName());
     }
 }
