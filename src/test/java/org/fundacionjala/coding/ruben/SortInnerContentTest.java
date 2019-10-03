@@ -28,7 +28,7 @@ public class SortInnerContentTest {
             // method used by the handler
         }
 
-        public void close() throws SecurityException {
+        public void close() {
             // method used by the handler
         }
 
@@ -58,7 +58,7 @@ public class SortInnerContentTest {
         logger.setUseParentHandlers(false);
         logger.addHandler(handler);
         logger.setLevel(Level.WARNING);
-        Sort.validateSentence("ab", " ").length();
+        Sort.validateSentence("ab", " ");
         assertEquals("Please enter a complete sentence", logger.getName());
     }
 }
