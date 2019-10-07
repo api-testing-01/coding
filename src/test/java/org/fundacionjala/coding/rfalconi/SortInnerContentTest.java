@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 public class SortInnerContentTest {
 
     @Test
-    public void test(){
+    public void test() {
         assertEquals("Wcelmoe", new SortInnerContent().sortInnerContent("Welcome"));
         assertEquals("Bdeeiinnovs a la calse", new SortInnerContent().sortInnerContent("Bienvenidos a la clase"));
         assertEquals("How deos it wkor?", new SortInnerContent().sortInnerContent("How does it work?"));
