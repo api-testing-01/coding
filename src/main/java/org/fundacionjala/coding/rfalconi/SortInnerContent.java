@@ -18,9 +18,9 @@ public class SortInnerContent {
 
     public String sortInnerContent(final String phrase) {
         LOGGER.log(Level.INFO, "Original phrase: " + phrase);
-        String [] content = phrase.split(" ");
+        String[] content = phrase.split(" ");
         for (int i = 0; i < content.length; i++) {
-            char [] word = content[i].toCharArray();
+            char[] word = content[i].toCharArray();
             if (word.length > 1) {
                 Arrays.sort(word, 1, word.length - 1);
                 content[i] = new String(word);
