@@ -10,12 +10,6 @@ public class DigitMatrix {
     private static final int DIMENSION = 3;
 
     /**
-     * Constructor.
-     */
-    public DigitMatrix() {
-    }
-
-    /**
      * Retrieves de represented digit.
      *
      * @param matrix input
