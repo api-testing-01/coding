@@ -8,7 +8,6 @@ import static org.junit.Assert.assertEquals;
  * @version 1.0
  */
 public class DigitMatrixTest {
-    private static final int MATRIX_DIMENSION = 3;
 
     @Test
     public void getCharactersNumberTest() {

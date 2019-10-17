@@ -8,7 +8,6 @@ import java.util.HashMap;
  */
 public class DigitMatrix {
     private static final int DIMENSION = 3;
-    private static char[][] digit = new char[DIMENSION][DIMENSION];
 
     /**
      * Constructor.
@@ -112,7 +111,6 @@ public class DigitMatrix {
         decimalValues.put(nine, '9');
         decimalValues.put(zero, '0');
 
-        //return decimalValues.containsKey(key) ? decimalValues.get(key) : 'L';
         return decimalValues.getOrDefault(key, '?');
     }
 }
