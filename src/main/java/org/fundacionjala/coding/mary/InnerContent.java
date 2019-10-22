@@ -15,22 +15,13 @@ public final class InnerContent {
     public static String sortTheInnerContent(final String words) {
         String result;
 
-        if (words == null) {
-            result = "Entered null string";
-            return result;
-        }
-
-        if (words.length() > 0) {
-            String[] wordsList = words.split(" ");
-            for (int i = 0; i < wordsList.length; i++) {
-                if (wordsList[i].length() > WORD_LENGTH) {
-                    wordsList[i] = descentOrderText(wordsList[i]);
-                }
+        String[] wordsList = words.split(" ");
+        for (int i = 0; i < wordsList.length; i++) {
+            if (wordsList[i].length() > WORD_LENGTH) {
+                wordsList[i] = descentOrderText(wordsList[i]);
             }
-            result = String.join(" ", wordsList);
-        } else {
-            result = "Entered empty string";
         }
+        result = String.join(" ", wordsList);
 
         return result;
     }
