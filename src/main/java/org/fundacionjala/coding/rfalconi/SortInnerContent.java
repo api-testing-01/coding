@@ -17,7 +17,7 @@ public class SortInnerContent {
     private static final Logger LOGGER = Logger.getLogger("org.fundacionjala.coding.rfalconi.SortInnerContent");
 
     public String sortInnerContent(final String phrase) {
-        LOGGER.log(Level.INFO, "Original phrase: " + phrase);
+        LOGGER.log(Level.INFO, "Original phrase: {0}", phrase);
         String[] content = phrase.split(" ");
         for (int i = 0; i < content.length; i++) {
             char[] word = content[i].toCharArray();
@@ -27,7 +27,7 @@ public class SortInnerContent {
             }
         }
         String newphrase = String.join(" ", content);
-        LOGGER.log(Level.INFO, "Phrase with re-ordered content: " + newphrase);
+        LOGGER.log(Level.INFO, "Phrase with re-ordered content: {0}", newphrase);
         return newphrase;
     }
 }
