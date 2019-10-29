@@ -6,44 +6,48 @@ import java.util.logging.Level;
 public class EAN {
 
     private static final Logger LOGGER = Logger.getLogger("org.fundacionjala.coding.rfalconi.EAN");
+    private static final int TEN = 10;
 
-    public String getChecksum (String barcode){
-        int checksum=0;
-        int [] digits = this.getDigits(barcode);
+    public String getChecksum(final String barcode) {
+        int checksum = 0;
+        int[] digits = this.getDigits(barcode);
         int sum = this.getSum(digits);
-        if (!isDividableByTen(sum)){
-            checksum = 10 - (sum % 10);
+        if (!isDividableByTen(sum)) {
+            checksum = TEN - (sum % TEN);
         }
         LOGGER.log(Level.INFO, "Checksum is {0}", checksum);
         return barcode.concat(String.valueOf(checksum));
     }
 
-    public int getSum(int [] barcode){
-        int sum=0;
-        int index=0;
-        while (barcode.length > index){
-            sum = sum + (barcode[index]*1);
-            index = index +2;
+    public int getSum(final int[] barcode) {
+        int sum = 0;
+        int index = 0;
+        int counter = 2;
+        int par = 3;
+        int impar =1;
+        while (barcode.length > index) {
+            sum = sum + (barcode[index] * impar);
+            index = index + counter;
         }
         index =1;
-        while (barcode.length > index){
-            sum = sum + (barcode[index]*3);
-            index = index +2;
+        while (barcode.length > index) {
+            sum = sum + (barcode[index] * par);
+            index = index + counter;
         }
         return sum;
     }
 
-    public int[] getDigits(String barcode){
+    public int[] getDigits(String barcode) {
         char [] digitChar = barcode.toCharArray();
-        int [] digits = new int [barcode.length()];
+        int [] digits = new int[barcode.length()];
         for (int i=0; i < digitChar.length; i++){
             digits[i]=Integer.parseInt(String.valueOf(digitChar[i]));
         }
         return  digits;
     }
     
-    public boolean isDividableByTen(int sum){
-        if ((sum % 10) == 0)
+    public boolean isDividableByTen(int sum) {
+        if ((sum % TEN) == 0)
             return true;
         else
             return false;
