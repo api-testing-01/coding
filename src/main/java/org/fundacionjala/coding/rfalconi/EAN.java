@@ -1,21 +1,20 @@
 package org.fundacionjala.coding.rfalconi;
 
 import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class EAN {
 
     private static final Logger LOGGER = Logger.getLogger("org.fundacionjala.coding.rfalconi.EAN");
 
     public String getChecksum (String barcode){
-        LOGGER.info("BARCODE :::"+barcode);
         int checksum=0;
         int [] digits = this.getDigits(barcode);
         int sum = this.getSum(digits);
-        LOGGER.info("Sum is "+ sum);
         if (!isDividableByTen(sum)){
             checksum = 10 - (sum % 10);
         }
-        LOGGER.info("Checksum is " + checksum);//this.isDividableByTen(sum);
+        LOGGER.log(Level.INFO, "Checksum is {0}", checksum);
         return barcode.concat(String.valueOf(checksum));
     }
 
