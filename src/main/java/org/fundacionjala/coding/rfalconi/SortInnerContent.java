@@ -27,7 +27,7 @@ public class SortInnerContent {
             }
         }
         String newphrase = String.join(" ", content);
-        LOGGER.log(Level.INFO, "Phrase with re-ordered content: {0}" , newphrase);
+        LOGGER.log(Level.INFO, "Phrase with re-ordered content: {0}", newphrase);
         return newphrase;
     }
 }
