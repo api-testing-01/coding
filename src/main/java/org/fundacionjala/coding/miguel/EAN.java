@@ -1,6 +1,7 @@
 package org.fundacionjala.coding.miguel;
 
 public class EAN {
+
     public int[] parse(final String num) {
         int[] nums = new int[num.length()];
         for (int i = 0; i < num.length(); i++) {
