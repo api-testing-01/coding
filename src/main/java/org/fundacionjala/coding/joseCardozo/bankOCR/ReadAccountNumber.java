@@ -13,9 +13,11 @@ public class ReadAccountNumber {
     private static final String BASE_PATH = System.getProperty("user.dir")
             .concat("\\src\\main\\java\\org\\fundacionjala\\coding\\joseCardozo\\bankOCR\\resource\\");
     private static final int ARRAY_SIZE = 9;
+    private static final int MOD = 11;
 
     public String getAccountNumber(final String fileName) throws IOException {
         String filePath = BASE_PATH.concat(fileName);
+        System.out.println("the path is: " + filePath);
         FileReader fileReader = new FileReader(filePath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String[] accountArrayOnFile = new String[ARRAY_SIZE];
@@ -47,6 +49,26 @@ public class ReadAccountNumber {
                 }
             }
         }
+        System.out.println("The account number is: " + result);
         return result;
+    }
+
+    public boolean getCheckSumAccountNumber(final String fileName) throws IOException {
+        char[] charArray = getAccountNumber(fileName).toCharArray();
+        int[] accountNumbers = new int[ARRAY_SIZE];
+        Arrays.setAll(accountNumbers, i -> (int) charArray[i]);
+        int i = ARRAY_SIZE;
+        int sum = 0;
+        for (int num : accountNumbers) {
+            if (i >= 2) {
+                sum *= (num + i);
+                i--;
+            } else {
+                sum *= num;
+            }
+
+        }
+
+        return sum % MOD == 0;
     }
 }
