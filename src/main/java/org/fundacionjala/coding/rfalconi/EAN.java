@@ -40,18 +40,13 @@ public class EAN {
     public int[] getDigits(final String barcode) {
         char[] digitChar = barcode.toCharArray();
         int[] digits = new int[barcode.length()];
-        for (int i=0; i < digitChar.length; i++) {
+        for (int i = 0; i < digitChar.length; i++) {
             digits[i] = Integer.parseInt(String.valueOf(digitChar[i]));
         }
         return  digits;
     }
 
     public boolean isDividableByTen(final int sum) {
-        if ((sum % TEN) == 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return ((sum % TEN) == 0);
     }
 }
