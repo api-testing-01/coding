@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public class SortTheInnerContent {
     public String sortTheInnerContent(final String sentence) {
-        final int minumumWords = 3;
+        final int minimum = 3;
         String[] words = sentence.split(" ");
         for (int i = 0; i < words.length; i++) {
             int wordSize = words[i].length();
-            if (wordSize > minumumWords) {
+            if (wordSize > minimum) {
                 char[] subString = words[i].substring(1, wordSize - 1).toCharArray();
                 Arrays.sort(subString);
                 String sortString = String.valueOf(subString);
