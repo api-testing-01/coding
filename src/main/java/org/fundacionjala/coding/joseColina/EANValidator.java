@@ -1,35 +1,40 @@
 package org.fundacionjala.coding.joseColina;
 
-public class EANValidator {
+public final class EANValidator {
+    private static final int RADIX_TEN = 10;
+    private static final int ODD_MULTIPLIER = 1;
+    private static final int EVEN_MULTIPLIER = 3;
 
-    public static boolean validate(final String EAVNnumber){
+    private EANValidator() {
+    }
+    public static boolean validate(final String eavnNumber) {
         boolean result = false;
-        int checksum = 0;
-        int[] digits = getDigits(EAVNnumber);
+        int checkSum = 0;
+        int[] digits = getDigits(eavnNumber);
         int lastDigit = digits[digits.length - 1];
         int sum = calculateSum(digits);
-        if (sum%10 != 0){
-            checksum = 10 - sum%10;
+        if (sum % RADIX_TEN != 0) {
+            checkSum = RADIX_TEN - sum % RADIX_TEN;
         }
-        if (checksum == lastDigit){
+        if (checkSum == lastDigit) {
             result = true;
         }
         return result;
     }
 
-    private static int calculateSum(int[] digits) {
+    private static int calculateSum(final int[] digits) {
         int result = 0;
-        int[] multiplier = {1, 3};
-        for(int i = 0; i < digits.length - 1; i++){
+        int[] multiplier = {ODD_MULTIPLIER, EVEN_MULTIPLIER};
+        for (int i = 0; i < digits.length - 1; i++) {
             result += digits[i] * multiplier[i % 2];
         }
         return result;
     }
 
-    private static int[] getDigits(final String EAVNnumber) {
-        int[] result = new int[EAVNnumber.length()];
-        for(int i = 0; i < result.length; i++){
-            result[i] = Character.getNumericValue(EAVNnumber.charAt(i));
+    private static int[] getDigits(final String eavnNnumber) {
+        int[] result = new int[eavnNnumber.length()];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = Character.getNumericValue(eavnNnumber.charAt(i));
         }
 
         return result;
