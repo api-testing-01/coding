@@ -1,27 +1,36 @@
 package org.fundacionjala.coding.ruben;
 
-public class EANValidator {
+public final class EANValidator {
+
+    public static final int ODD_NUMBER_MULTIPLIER = 3;
+    public static final int CHECKSUM_CALCULATOR = 10;
+
+    private EANValidator() {
+        // private constructor
+    }
 
     public static boolean validate(final String eanCode) {
         String[] result = eanCode.split("");
         int[] eanNumbers = new int[eanCode.length()];
-        int sum =0;
+        int sum = 0;
+        System.out.println(eanCode.length());
+        System.out.println(eanNumbers.length);
         for (int count = 0; count < result.length; count++) {
             eanNumbers[count] = Integer.parseInt(result[count]);
         }
-        for (int count = 0; count < eanNumbers.length-1; count++) {
-            if(eanNumbers[count]%2 == 0) {
-                sum = sum + eanNumbers[count];
-            } else {
-                sum = sum + eanNumbers[count]*3;
-            }
+        for (int count = 1; count < eanNumbers.length - 1; count = count + 2) {
+            eanNumbers[count] = eanNumbers[count] * ODD_NUMBER_MULTIPLIER;
         }
-        int checkSum = 10 - (sum % 10);
+        for (int count = 0; count < eanNumbers.length - 1; count++) {
+            sum = sum + eanNumbers[count];
+        }
+        int checkSum = CHECKSUM_CALCULATOR - (sum % CHECKSUM_CALCULATOR);
         System.out.println(checkSum);
-        if(checkSum == eanNumbers[eanNumbers.length-1]) {
+        System.out.println(eanCode.charAt(eanCode.length() - 1));
+        if (checkSum == eanNumbers[eanNumbers.length - 1]) {
             return true;
         } else {
-            return false;
+            return checkSum == CHECKSUM_CALCULATOR && eanNumbers[result.length - 1] == 0;
         }
     }
 }
