@@ -22,14 +22,14 @@ public class EAN {
     public int getSum(final int[] barcode) {
         int sum = 0;
         int index = 0;
-        int counter = 2;
-        int par = 3;
-        int impar =1;
+        final int counter = 2;
+        final int par = 3;
+        int impar = 1;
         while (barcode.length > index) {
             sum = sum + (barcode[index] * impar);
             index = index + counter;
         }
-        index =1;
+        index = 1;
         while (barcode.length > index) {
             sum = sum + (barcode[index] * par);
             index = index + counter;
@@ -37,19 +37,21 @@ public class EAN {
         return sum;
     }
 
-    public int[] getDigits(String barcode) {
-        char [] digitChar = barcode.toCharArray();
-        int [] digits = new int[barcode.length()];
-        for (int i=0; i < digitChar.length; i++){
-            digits[i]=Integer.parseInt(String.valueOf(digitChar[i]));
+    public int[] getDigits(final String barcode) {
+        char[] digitChar = barcode.toCharArray();
+        int[] digits = new int[barcode.length()];
+        for (int i=0; i < digitChar.length; i++) {
+            digits[i] = Integer.parseInt(String.valueOf(digitChar[i]));
         }
         return  digits;
     }
-    
-    public boolean isDividableByTen(int sum) {
-        if ((sum % TEN) == 0)
+
+    public boolean isDividableByTen(final int sum) {
+        if ((sum % TEN) == 0) {
             return true;
-        else
+        }
+        else {
             return false;
+        }
     }
 }
