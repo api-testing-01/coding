@@ -2,12 +2,14 @@ package org.fundacionjala.coding.benjamin;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 /**
  * @author Benjamin Huanca on 10/16/2019.
  * @version 1.0
  */
 public class DigitMatrix {
     private static final int DIMENSION = 3;
+    private String decodedAccount;
 
     /**
      * Retrieves de represented digit.
@@ -69,7 +71,8 @@ public class DigitMatrix {
         for (Character ch : accountNumber) {
             accountNumberString.append(ch);
         }
-        return accountNumberString.toString();
+        decodedAccount = accountNumberString.toString();
+        return decodedAccount;
     }
 
     /**
@@ -106,5 +109,21 @@ public class DigitMatrix {
         decimalValues.put(zero, '0');
 
         return decimalValues.getOrDefault(key, '?');
+    }
+
+    /**
+     * Validate account number checksum.
+     *
+     * @return boolean according validation.
+     */
+    public boolean validateChecksum() {
+        StringBuilder auxString = new StringBuilder(decodedAccount);
+        final int codeFactor = 11;
+        char[] accountDigits = auxString.reverse().toString().toCharArray();
+        int checksum = 0;
+        for (int i = 0; i <= accountDigits.length - 1; i++) {
+            checksum += Character.getNumericValue(accountDigits[i]) * (i + 1);
+        }
+        return (checksum % codeFactor == 0);
     }
 }

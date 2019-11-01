@@ -2,7 +2,10 @@ package org.fundacionjala.coding.benjamin;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
+
 /**
  * @author Benjamin Huanca on 10/16/2019.
  * @version 1.0
@@ -41,6 +44,7 @@ public class DigitMatrixTest {
 
         assertEquals(expected, digitMatrix.decoder(lcdMatrix));
     }
+
     @Test
     public void decode912345678Test() {
         char[][] lcdMatrix = {
@@ -52,10 +56,46 @@ public class DigitMatrixTest {
                         '|', '_', '|', ' ', ' ', '|', '|', '_', '|'},
                 {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
                         ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
-                };
+        };
         String expected = "912345678";
         DigitMatrix digitMatrix = new DigitMatrix();
 
         assertEquals(expected, digitMatrix.decoder(lcdMatrix));
+    }
+
+    @Test
+    public void checksumInvalidTest() {
+        char[][] lcdMatrix = {
+                {' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ', ' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ',
+                        ' ', '_', ' ', ' ', '_', ' ', ' ', '_', ' '},
+                {'|', '_', '|', ' ', ' ', '|', ' ', '_', '|', ' ', '_', '|', '|', '_', '|', '|', '_', ' ',
+                        '|', '_', ' ', ' ', ' ', '|', '|', '_', '|'},
+                {' ', '_', '|', ' ', ' ', '|', '|', '_', ' ', ' ', '_', '|', ' ', ' ', '|', ' ', '_', '|',
+                        '|', '_', '|', ' ', ' ', '|', '|', '_', '|'},
+                {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                        ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+        };
+        //Invalid account number: "912345678"
+        DigitMatrix digitMatrix = new DigitMatrix();
+        digitMatrix.decoder(lcdMatrix);
+        assertFalse(digitMatrix.validateChecksum());
+    }
+
+    @Test
+    public void checksumValidTest() {
+        char[][] lcdMatrix = {
+                {' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ', ' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ',
+                        ' ', '_', ' ', ' ', '_', ' ', ' ', '_', ' '},
+                {'|', '_', '|', ' ', ' ', '|', ' ', '_', '|', ' ', '_', '|', '|', '_', '|', '|', '_', ' ',
+                        '|', '_', ' ', ' ', ' ', '|', '|', '_', ' '},
+                {' ', '_', '|', ' ', ' ', '|', '|', '_', ' ', ' ', '_', '|', ' ', ' ', '|', ' ', '_', '|',
+                        '|', '_', '|', ' ', ' ', '|', ' ', '_', '|'},
+                {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
+                        ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
+        };
+        //Valid account number: "912345675";
+        DigitMatrix digitMatrix = new DigitMatrix();
+        digitMatrix.decoder(lcdMatrix);
+        assertTrue(digitMatrix.validateChecksum());
     }
 }
