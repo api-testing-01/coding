@@ -93,7 +93,7 @@ public class DigitMatrixTest {
                 {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
                         ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}
         };
-        //Valid account number: "912345675";
+        //Valid account number: "912345675"
         DigitMatrix digitMatrix = new DigitMatrix();
         digitMatrix.decoder(lcdMatrix);
         assertTrue(digitMatrix.validateChecksum());
