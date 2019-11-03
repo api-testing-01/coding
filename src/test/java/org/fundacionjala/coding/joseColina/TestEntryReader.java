@@ -1,6 +1,7 @@
 package org.fundacionjala.coding.joseColina;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
@@ -12,9 +13,10 @@ import java.util.Scanner;
 import static org.junit.Assert.assertEquals;
 
 public class TestEntryReader {
-    private List<String> lines;
-    @Before
-    public void SetUp(){
+    private static List<String> lines;
+
+    @BeforeClass
+    public static void SetUp(){
         String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\";
         String filePath = resourcePath + "digits0-9.txt";
         lines = new ArrayList<>();
@@ -26,7 +28,7 @@ public class TestEntryReader {
             }
         }
         catch(Exception e){
-
+            System.out.println("Error opening file: " + e.getMessage());
         }
     }
     @Test

@@ -29,7 +29,7 @@ public class EntryValidator {
             checksum += Character.getNumericValue(account.charAt(i)) * (length - i);
         }
 
-        if(checksum % RADIX_ELEVEN == 0){
+        if(checksum % RADIX_ELEVEN == 0 && checksum != 0){
             isValid = true;
         }
 

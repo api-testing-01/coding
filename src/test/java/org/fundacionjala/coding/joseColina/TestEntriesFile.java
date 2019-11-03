@@ -25,4 +25,15 @@ public class TestEntriesFile {
         }
         assertTrue(Arrays.deepEquals(expectedEntries, actualEntries));
     }
+    @Test
+    public void testWriteToFile(){
+        String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\";
+        String filePath = resourcePath + "entries.txt";
+        String filePathToWrite = resourcePath + "results.txt";
+        EntriesFile entriesFile = new EntriesFile(filePath);
+        entriesFile.readEntries();
+        entriesFile.validateEntries();
+        entriesFile.writeToFile(filePathToWrite);
+
+    }
 }
