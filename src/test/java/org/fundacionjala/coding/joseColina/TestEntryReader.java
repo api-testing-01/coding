@@ -2,9 +2,7 @@ package org.fundacionjala.coding.joseColina;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class TestEntryReader {
     @Test
@@ -15,9 +13,9 @@ public class TestEntryReader {
         String line4 = "                           ";
         String[] lines = {line1,line2,line3,line4};
         EntryReader reader = new EntryReader();
-        int[] expected = {0,0,0,0,0,0,0,0,0};
-        int[] actual = reader.readAccountNumber(lines);
-        assertTrue(Arrays.equals(expected,actual));
+        String expected = "000000000";
+        String actual = reader.readAccountNumber(lines);
+        assertEquals(expected, actual);
     }
     @Test
     public void testEntryReaderWith111111111(){
@@ -27,8 +25,8 @@ public class TestEntryReader {
         String line4 = "                           ";
         String[] lines = {line1,line2,line3,line4};
         EntryReader reader = new EntryReader();
-        int[] expected = {1,1,1,1,1,1,1,1,1};
-        int[] actual = reader.readAccountNumber(lines);
-        assertTrue(Arrays.equals(expected,actual));
+        String expected = "111111111";
+        String actual = reader.readAccountNumber(lines);
+        assertEquals(expected, actual);
     }
 }

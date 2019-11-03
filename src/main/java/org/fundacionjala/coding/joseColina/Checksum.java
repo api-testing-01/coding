@@ -10,6 +10,7 @@ public class Checksum {
 
     public boolean isAccountValid(String account){
         boolean isValid = false;
+        checksum = 0;
         int length = account.length();
         for (int i = 0; i < length; i++) {
             checksum += Character.getNumericValue(account.charAt(i)) * (length - i);
