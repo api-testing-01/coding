@@ -9,33 +9,19 @@ public final class EANValidator {
     }
 
     public static boolean validate(final String eanCode) {
-        double validateCode = (Double.parseDouble(eanCode)) % MOD_10;
-        return (validateCode == checksum(eanCode)) ? true : false;
+        return Character.getNumericValue(eanCode.charAt(eanCode.length() - 1)) == checksum(eanCode);
     }
 
     private static int checksum(final String eanCode) {
         int sum = 0;
-        int checksum = 0;
         String[] digits = eanCode.split("");
-        int[] numbers = new int[digits.length];
 
-        for (int index = 0; index < digits.length; index++) {
-            numbers[index] = Integer.parseInt(digits[index]);
+        for (int index = 0; index < digits.length - 1; index++) {
+            int number = Integer.parseInt(digits[index]);
+            sum += (index + 1) % 2 != 0 ? number : number * MULTIPLIED_BY_3;
         }
 
-        for (int i = 0; i < numbers.length - 1; i++) {
-            if ((i + 1) % 2 != 0) {
-                sum = sum + numbers[i];
-            } else {
-                sum = sum + (numbers[i] * MULTIPLIED_BY_3);
-            }
-        }
-
-        if ((sum % MOD_10) != 0) {
-            checksum = TOTAL - (sum % MOD_10);
-        }
-
-        return checksum;
+        return sum % MOD_10 == 0 ? 0 : TOTAL - (sum % MOD_10);
     }
 }
 
