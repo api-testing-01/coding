@@ -10,43 +10,28 @@ public class EAN {
 
     public String getChecksum(final String barcode) {
         int checksum = 0;
-        int[] digits = this.getDigits(barcode);
-        int sum = this.getSum(digits);
-        if (!isDividableByTen(sum)) {
+        int sum = this.getSum(barcode);
+        if ((sum % TEN) != 0) {
             checksum = TEN - (sum % TEN);
         }
-        LOGGER.log(Level.INFO, "Checksum is {0}", checksum);
+        LOGGER.log(Level.INFO, "Barcode is {0} ", barcode);
+        LOGGER.log(Level.INFO, "Checksum is {0} ", checksum);
         return barcode.concat(String.valueOf(checksum));
     }
 
-    public int getSum(final int[] barcode) {
+    public int getSum(final String barcode) {
         int sum = 0;
-        int index = 0;
-        final int counter = 2;
-        final int par = 3;
-        int impar = 1;
-        while (barcode.length > index) {
-            sum = sum + (barcode[index] * impar);
-            index = index + counter;
-        }
-        index = 1;
-        while (barcode.length > index) {
-            sum = sum + (barcode[index] * par);
-            index = index + counter;
+        final int pair = 3;
+        int non = 1;
+
+        char[] digitChar = barcode.toCharArray();
+        for (int i = 0; i < digitChar.length; i++) {
+            if (i % 2 == 0){
+                sum = sum + (Integer.parseInt(String.valueOf(digitChar[i])) * non);
+            } else {
+                sum = sum + (Integer.parseInt(String.valueOf(digitChar[i])) * pair);
+            }
         }
         return sum;
-    }
-
-    public int[] getDigits(final String barcode) {
-        char[] digitChar = barcode.toCharArray();
-        int[] digits = new int[barcode.length()];
-        for (int i = 0; i < digitChar.length; i++) {
-            digits[i] = Integer.parseInt(String.valueOf(digitChar[i]));
-        }
-        return  digits;
-    }
-
-    public boolean isDividableByTen(final int sum) {
-        return ((sum % TEN) == 0);
     }
 }
