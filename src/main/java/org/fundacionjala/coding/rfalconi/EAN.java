@@ -26,7 +26,7 @@ public class EAN {
 
         char[] digitChar = barcode.toCharArray();
         for (int i = 0; i < digitChar.length; i++) {
-            if (i % 2 == 0){
+            if (i % 2 == 0) {
                 sum = sum + (Integer.parseInt(String.valueOf(digitChar[i])) * non);
             } else {
                 sum = sum + (Integer.parseInt(String.valueOf(digitChar[i])) * pair);
