@@ -16,21 +16,15 @@ final class Kata {
         final int minimumCharLength = 2;
         final String delimiter = " ";
         final String[] phrase = words.split(delimiter);
-        String[] sortedString = new String[phrase.length];
 
         for (int i = 0; i < phrase.length; i++) {
             if (phrase[i].length() > minimumCharLength) {
                 char[] tempArray = phrase[i].substring(1, phrase[i].length() - 1).toCharArray();
                 Arrays.sort(tempArray);
-                StringBuilder reverse = new StringBuilder();
-                reverse.append(tempArray);
-                sortedString[i] = phrase[i].charAt(0) + reverse.reverse().toString()
+                phrase[i] = phrase[i].charAt(0) + new StringBuilder().append(tempArray).reverse().toString()
                         + phrase[i].charAt(phrase[i].length() - 1);
-            } else {
-                sortedString[i] = phrase[i];
             }
-
         }
-        return String.join(delimiter, sortedString);
+        return String.join(delimiter, phrase);
     }
 }
