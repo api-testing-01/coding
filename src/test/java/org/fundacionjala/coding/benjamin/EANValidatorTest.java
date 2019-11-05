@@ -12,18 +12,18 @@ public class EANValidatorTest {
     public void testValidateTrue() {
 
         String code = "4003301018398";
-        Assert.assertEquals(true, EANValidator.validate(code));
+        Assert.assertTrue(EANValidator.validate(code));
     }
     @Test
     public void testValidateFalse() {
 
         String code = "4003301018392";
-        Assert.assertEquals(false, EANValidator.validate(code));
+        Assert.assertFalse(EANValidator.validate(code));
     }
     @Test
     public void testValidateTrueChecksumZero() {
 
         String code = "4000000000600";
-        Assert.assertEquals(true, EANValidator.validate(code));
+        Assert.assertTrue(EANValidator.validate(code));
     }
 }
