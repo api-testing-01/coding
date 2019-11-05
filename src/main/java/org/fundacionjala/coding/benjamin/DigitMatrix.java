@@ -1,7 +1,5 @@
 package org.fundacionjala.coding.benjamin;
 
-//import java.io.*;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -17,6 +15,7 @@ import java.util.Scanner;
 public class DigitMatrix {
     private static final int DIMENSION = 3;
     private String decodedAccount;
+    private static final String USER_DIR = "user.dir";
 
     /**
      * Retrieves de represented digit.
@@ -163,7 +162,7 @@ public class DigitMatrix {
      */
     public void addAccountToAFile(final String filename) {
 
-        try (FileWriter fileWriter = new FileWriter(System.getProperty("user.dir") + filename)) {
+        try (FileWriter fileWriter = new FileWriter(System.getProperty(USER_DIR) + filename)) {
 
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             bufferedWriter.write(decodedAccount + getDescAccount() + "\n");
@@ -181,7 +180,7 @@ public class DigitMatrix {
      */
     public ArrayList<String> readAccountsFile(final String filename) {
 
-        File file = new File(System.getProperty("user.dir") + filename);
+        File file = new File(System.getProperty(USER_DIR) + filename);
         ArrayList<String> accountsList = new ArrayList<>();
         try (Scanner scanner = new Scanner(file)) {
 
@@ -202,7 +201,7 @@ public class DigitMatrix {
      * @return boolean according file deletion.
      */
     public boolean deleteFile(final String filename) {
-        File file = new File(System.getProperty("user.dir") + filename);
+        File file = new File(System.getProperty(USER_DIR) + filename);
         return file.delete();
     }
 }

@@ -13,6 +13,7 @@ import static org.junit.Assert.assertTrue;
  * @version 1.0
  */
 public class DigitMatrixTest {
+    private static final String FILE_NAME = "\\accounts.txt";
 
     @Test
     public void getCharactersNumberTest() {
@@ -102,7 +103,7 @@ public class DigitMatrixTest {
     @Test
     public void addingValidAccountToTheFile() {
         ArrayList<String> accountsList;
-        String filename = "\\accounts.txt";
+        String filename = FILE_NAME;
         char[][] lcdMatrix = {
                 {' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ', ' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ',
                         ' ', '_', ' ', ' ', '_', ' ', ' ', '_', ' '},
@@ -125,7 +126,7 @@ public class DigitMatrixTest {
     @Test
     public void addingInvalidAccountToTheFile() {
         ArrayList<String> accountsList;
-        String filename = "\\accounts.txt";
+        String filename = FILE_NAME;
         char[][] lcdMatrix = {
                 {' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ', ' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ',
                         ' ', '_', ' ', ' ', '_', ' ', ' ', '_', ' '},
@@ -147,7 +148,7 @@ public class DigitMatrixTest {
 
     @Test
     public void addingUnrecognizedAccountToTheFile() {
-        String filename = "\\accounts.txt";
+        String filename = FILE_NAME;
         ArrayList<String> accountsList;
         char[][] lcdMatrix = {
                 {' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ', ' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ',
