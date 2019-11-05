@@ -13,7 +13,7 @@ import static org.junit.Assert.assertTrue;
  * @version 1.0
  */
 public class DigitMatrixTest {
-    private static final String FILE_NAME = "\\accounts.txt";
+    private static final String FILE_NAME = "/accounts.txt";
 
     @Test
     public void getCharactersNumberTest() {
