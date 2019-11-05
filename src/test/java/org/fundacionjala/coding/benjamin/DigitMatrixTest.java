@@ -103,7 +103,6 @@ public class DigitMatrixTest {
     @Test
     public void addingValidAccountToTheFile() {
         ArrayList<String> accountsList;
-        String filename = FILE_NAME;
         char[][] lcdMatrix = {
                 {' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ', ' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ',
                         ' ', '_', ' ', ' ', '_', ' ', ' ', '_', ' '},
@@ -117,16 +116,15 @@ public class DigitMatrixTest {
         //Valid account number: "912345675"
         DigitMatrix digitMatrix = new DigitMatrix();
         digitMatrix.decoder(lcdMatrix);
-        digitMatrix.addAccountToAFile(filename);
-        accountsList = digitMatrix.readAccountsFile(filename);
+        digitMatrix.addAccountToAFile(FILE_NAME);
+        accountsList = digitMatrix.readAccountsFile(FILE_NAME);
         assertEquals("912345675", accountsList.get(0));
-        digitMatrix.deleteFile(filename);
+        digitMatrix.deleteFile(FILE_NAME);
     }
 
     @Test
     public void addingInvalidAccountToTheFile() {
         ArrayList<String> accountsList;
-        String filename = FILE_NAME;
         char[][] lcdMatrix = {
                 {' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ', ' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ',
                         ' ', '_', ' ', ' ', '_', ' ', ' ', '_', ' '},
@@ -140,15 +138,14 @@ public class DigitMatrixTest {
         //Invalid account number: "912345678"
         DigitMatrix digitMatrix = new DigitMatrix();
         digitMatrix.decoder(lcdMatrix);
-        digitMatrix.addAccountToAFile(filename);
-        accountsList = digitMatrix.readAccountsFile(filename);
+        digitMatrix.addAccountToAFile(FILE_NAME);
+        accountsList = digitMatrix.readAccountsFile(FILE_NAME);
         assertEquals("912345678 ERR", accountsList.get(0));
-        digitMatrix.deleteFile(filename);
+        digitMatrix.deleteFile(FILE_NAME);
     }
 
     @Test
     public void addingUnrecognizedAccountToTheFile() {
-        String filename = FILE_NAME;
         ArrayList<String> accountsList;
         char[][] lcdMatrix = {
                 {' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ', ' ', '_', ' ', ' ', ' ', ' ', ' ', '_', ' ',
@@ -163,10 +160,10 @@ public class DigitMatrixTest {
         //Unrecognized account number: "91234567?"
         DigitMatrix digitMatrix = new DigitMatrix();
         digitMatrix.decoder(lcdMatrix);
-        digitMatrix.addAccountToAFile(filename);
-        accountsList = digitMatrix.readAccountsFile(filename);
+        digitMatrix.addAccountToAFile(FILE_NAME);
+        accountsList = digitMatrix.readAccountsFile(FILE_NAME);
         assertEquals("91234567? ILL", accountsList.get(0));
-        digitMatrix.deleteFile(filename);
+        digitMatrix.deleteFile(FILE_NAME);
     }
 
     @Test(expected = RuntimeException.class)
