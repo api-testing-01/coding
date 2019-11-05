@@ -120,7 +120,7 @@ public class DigitMatrixTest {
         digitMatrix.addAccountToAFile(filename);
         accountsList = digitMatrix.readAccountsFile(filename);
         assertEquals("912345675", accountsList.get(0));
-        assertTrue(digitMatrix.deleteFile(filename));
+        digitMatrix.deleteFile(filename);
     }
 
     @Test
@@ -143,7 +143,7 @@ public class DigitMatrixTest {
         digitMatrix.addAccountToAFile(filename);
         accountsList = digitMatrix.readAccountsFile(filename);
         assertEquals("912345678 ERR", accountsList.get(0));
-        assertTrue(digitMatrix.deleteFile(filename));
+        digitMatrix.deleteFile(filename);
     }
 
     @Test
@@ -166,7 +166,7 @@ public class DigitMatrixTest {
         digitMatrix.addAccountToAFile(filename);
         accountsList = digitMatrix.readAccountsFile(filename);
         assertEquals("91234567? ILL", accountsList.get(0));
-        assertTrue(digitMatrix.deleteFile(filename));
+        digitMatrix.deleteFile(filename);
     }
 
     @Test(expected = RuntimeException.class)
@@ -183,10 +183,10 @@ public class DigitMatrixTest {
         digitMatrix.readAccountsFile(filename);
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
     public void testDeleteFileFalse() {
         String filename = "";
         DigitMatrix digitMatrix = new DigitMatrix();
-        assertFalse(digitMatrix.deleteFile(filename));
+        digitMatrix.deleteFile(filename);
     }
 }

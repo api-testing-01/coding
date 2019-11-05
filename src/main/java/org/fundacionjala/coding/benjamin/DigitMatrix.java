@@ -4,6 +4,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -198,10 +201,13 @@ public class DigitMatrix {
      * Delete created account file.
      *
      * @param filename file name & extension.
-     * @return boolean according file deletion.
      */
-    public boolean deleteFile(final String filename) {
-        File file = new File(System.getProperty(USER_DIR) + filename);
-        return file.delete();
+    public void deleteFile(final String filename) {
+        Path path = Paths.get(System.getProperty(USER_DIR), filename);
+        try {
+            Files.delete(path);
+        } catch (IOException e) {
+            throw new CustomFileNotFoundException();
+        }
     }
 }
