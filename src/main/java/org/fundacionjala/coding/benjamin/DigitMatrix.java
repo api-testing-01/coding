@@ -168,7 +168,7 @@ public class DigitMatrix {
             bufferedWriter.write(decodedAccount + getDescAccount() + "\n");
             bufferedWriter.close();
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new CustomFileNotFoundException();
         }
     }
 
@@ -189,7 +189,7 @@ public class DigitMatrix {
                 accountsList.add(linea);
             }
         } catch (IOException e) {
-            throw new RuntimeException();
+            throw new CustomFileNotFoundException();
         }
         return accountsList;
     }
