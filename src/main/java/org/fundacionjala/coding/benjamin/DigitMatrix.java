@@ -139,7 +139,7 @@ public class DigitMatrix {
      *
      * @return boolean value according account.
      */
-    public boolean containNoValidCharacters() {
+    private boolean containNoValidCharacters() {
         return (decodedAccount.contains("?"));
     }
 
@@ -148,7 +148,7 @@ public class DigitMatrix {
      *
      * @return String for the file.
      */
-    public String getDescAccount() {
+    private String getDescAccount() {
         if (!validateChecksum()) {
             return (containNoValidCharacters() ? " ILL" : " ERR");
         } else {
@@ -199,9 +199,10 @@ public class DigitMatrix {
      * Delete created account file.
      *
      * @param filename file name & extension.
+     * @return boolean according file deletion.
      */
-    public void deleteFile(final String filename) {
+    public boolean deleteFile(final String filename) {
         File file = new File(System.getProperty("user.dir") + filename);
-        file.delete();
+        return file.delete();
     }
 }
