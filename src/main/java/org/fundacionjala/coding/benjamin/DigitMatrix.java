@@ -1,7 +1,14 @@
 package org.fundacionjala.coding.benjamin;
 
+//import java.io.*;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
  * @author Benjamin Huanca on 10/16/2019.
@@ -125,5 +132,76 @@ public class DigitMatrix {
             checksum += Character.getNumericValue(accountDigits[i]) * (i + 1);
         }
         return (checksum % codeFactor == 0);
+    }
+
+    /**
+     * Verify if account has unrecognized characters.
+     *
+     * @return boolean value according account.
+     */
+    public boolean containNoValidCharacters() {
+        return (decodedAccount.contains("?"));
+    }
+
+    /**
+     * Description of the account to the file.
+     *
+     * @return String for the file.
+     */
+    public String getDescAccount() {
+        if (!validateChecksum()) {
+            return (containNoValidCharacters() ? " ILL" : " ERR");
+        } else {
+            return "";
+        }
+    }
+
+    /**
+     * Add an account number to the file.
+     *
+     * @param filename file name & extension.
+     */
+    public void addAccountToAFile(final String filename) {
+
+        try (FileWriter fileWriter = new FileWriter(System.getProperty("user.dir") + filename)) {
+
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(decodedAccount + getDescAccount() + "\n");
+            bufferedWriter.close();
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+    }
+
+    /**
+     * Get accounts from the accounts file.
+     *
+     * @param filename file name & extension.
+     * @return Accounts list.
+     */
+    public ArrayList<String> readAccountsFile(final String filename) {
+
+        File file = new File(System.getProperty("user.dir") + filename);
+        ArrayList<String> accountsList = new ArrayList<>();
+        try (Scanner scanner = new Scanner(file)) {
+
+            while (scanner.hasNextLine()) {
+                String linea = scanner.nextLine();
+                accountsList.add(linea);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
+        return accountsList;
+    }
+
+    /**
+     * Delete created account file.
+     *
+     * @param filename file name & extension.
+     */
+    public void deleteFile(final String filename) {
+        File file = new File(System.getProperty("user.dir") + filename);
+        file.delete();
     }
 }
