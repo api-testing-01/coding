@@ -24,4 +24,8 @@ public class Entry {
     public void setAccountNumber(String accountNumber){
         this.accountNumber = accountNumber;
     }
+
+    public List<String> getLines(){
+        return entryLines;
+    }
 }
