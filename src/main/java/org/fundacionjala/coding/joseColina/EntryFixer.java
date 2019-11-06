@@ -37,10 +37,16 @@ public class EntryFixer {
                 offset += 3;
             }
         }
+        String accountResult = concatResult(entry.getAccountNumber(), results);
+        entryFixed.setAccountNumber(accountResult);
+        return entryFixed;
+    }
+
+    private String concatResult(final String accountNumber, final List<String> results) {
+        String accountResult = accountNumber;
         if(!results.isEmpty()){
-            String accountResult;
             if(results.size() > 1){
-                accountResult = entry.getAccountNumber() + " AMB [";
+                accountResult = accountNumber + " AMB [";
                 for(int i =0; i< results.size(); i++){
                     accountResult +=  "'" + results.get(i) + "', ";
                 }
@@ -49,8 +55,8 @@ public class EntryFixer {
             else{
                 accountResult = results.get(0);
             }
-            entryFixed.setAccountNumber(accountResult);
+
         }
-        return entryFixed;
+        return accountResult;
     }
 }
