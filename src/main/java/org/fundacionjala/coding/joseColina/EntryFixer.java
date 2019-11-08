@@ -17,10 +17,12 @@ public class EntryFixer {
             for(int j= 0; j < lengthOfLine; j++){
                 List<String> linesFixed = getLinesFixed(i, j, offset, entryLines);
 
+/*
                 System.out.println(linesFixed.get(0).toString());
                 System.out.println(linesFixed.get(1).toString());
                 System.out.println(linesFixed.get(2).toString());
                 System.out.println(linesFixed.get(3).toString());
+*/
 
                 Entry entryValidated = validator.validateEntry(new Entry(linesFixed));
                 String account = entryValidated.getAccountNumber();
