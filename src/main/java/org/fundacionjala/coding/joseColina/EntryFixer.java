@@ -4,45 +4,56 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EntryFixer {
+    private static final int WIDTH_OF_DIGIT = 3;
 
     public Entry fixEntry(final Entry entry){
-        Entry entryFixed = entry;
-        List<String> entryLines = entry.getLines();
-        List<String> results = new ArrayList<>();
+        Entry entryFixed = new Entry(entry.getLines());
+        List<String> entryLines = new ArrayList<>(entry.getLines());
+        List<String> accountsResults = new ArrayList<>();
         EntryValidator validator = new EntryValidator();
-        String replaceSymbol = "";
-        StringBuilder lineToFix;
-        for (int i=0; i < entryLines.size(); i++){
+        for (int i=0; i < entryLines.size() - 1; i++){
             int offset = 0;
-            String line = entryLines.get(i);
-            for(int j= 0; j < line.length(); j++){
-                lineToFix = new StringBuilder(line);
-                if(line.charAt(j) != ' '){
-                    replaceSymbol = " ";
-                } else if(i == (offset + 1)){
-                    replaceSymbol = "_";
-                }
-                else{
-                    replaceSymbol = "|";
-                }
-                lineToFix.replace(j, j +1, replaceSymbol);
-                List<String> linesToTest = entryLines;
-                linesToTest.set(j, lineToFix.toString());
-                Entry entryToTest = new Entry(linesToTest);
-                Entry entryValidated = validator.validateEntry(entryToTest);
+            int lengthOfLine = entryLines.get(i).length();
+            for(int j= 0; j < lengthOfLine; j++){
+                List<String> linesFixed = getLinesFixed(i, j, offset, entryLines);
+
+                System.out.println(linesFixed.get(0).toString());
+                System.out.println(linesFixed.get(1).toString());
+                System.out.println(linesFixed.get(2).toString());
+                System.out.println(linesFixed.get(3).toString());
+
+                Entry entryValidated = validator.validateEntry(new Entry(linesFixed));
                 String account = entryValidated.getAccountNumber();
                 if(!account.contains("ILL") && !account.contains("ERR")){
-                    results.add(account);
+                    accountsResults.add(account);
                 }
-                offset += 3;
+                offset = (j/WIDTH_OF_DIGIT)*WIDTH_OF_DIGIT;
             }
         }
-        String accountResult = concatResult(entry.getAccountNumber(), results);
-        entryFixed.setAccountNumber(accountResult);
+        String accountConcatenated = concatResults(entry.getAccountNumber(), accountsResults);
+        entryFixed.setAccountNumber(accountConcatenated);
+        System.out.println(entryFixed.getAccountNumber());
         return entryFixed;
     }
 
-    private String concatResult(final String accountNumber, final List<String> results) {
+    private List<String> getLinesFixed(int numberOfLine, int positionOfChar, int offset, List<String> entryLines) {
+        List<String> linesResults = new ArrayList<>(entryLines);
+        StringBuilder lineFixed = new StringBuilder(entryLines.get(numberOfLine));
+        String replaceSymbol = "";
+        if(lineFixed.charAt(positionOfChar) != ' '){
+            replaceSymbol = " ";
+        } else if(positionOfChar == ++offset ){
+            replaceSymbol = "_";
+        }
+        else{
+            replaceSymbol = "|";
+        }
+        lineFixed.replace(positionOfChar, positionOfChar +1, replaceSymbol);
+        linesResults.set(numberOfLine, lineFixed.toString());
+        return linesResults;
+    }
+
+    private String concatResults(final String accountNumber, final List<String> results) {
         String accountResult = accountNumber;
         if(!results.isEmpty()){
             if(results.size() > 1){

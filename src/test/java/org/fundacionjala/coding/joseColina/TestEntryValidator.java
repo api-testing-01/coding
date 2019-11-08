@@ -1,6 +1,5 @@
 package org.fundacionjala.coding.joseColina;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -21,7 +20,7 @@ public class TestEntryValidator {
     public static void setup(){
         entryValidator = new EntryValidator();
         String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\";
-        String filePath = resourcePath + "entriesToValidate.txt";
+        String filePath = resourcePath + "joseColina/entriesToValidate.txt";
         lines = new ArrayList<>();
         File file = new File(filePath);
         try{

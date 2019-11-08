@@ -1,6 +1,5 @@
 package org.fundacionjala.coding.joseColina;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -17,7 +16,7 @@ public class TestEntryReader {
 
     @BeforeClass
     public static void SetUp(){
-        String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\";
+        String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\joseColina\\";
         String filePath = resourcePath + "digits0-9.txt";
         lines = new ArrayList<>();
         File file = new File(filePath);

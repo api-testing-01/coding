@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 public class TestEntriesFile {
     @Test
     public void testReadEntries(){
-        String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\";
+        String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\joseColina\\";
         String filePath = resourcePath + "entries.txt";
         EntriesFile entriesFile = new EntriesFile(filePath);
         String s1 = "000000000";
@@ -27,7 +27,7 @@ public class TestEntriesFile {
     }
     @Test
     public void testWriteToFile(){
-        String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\";
+        String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\joseColina\\";
         String filePath = resourcePath + "entries.txt";
         String filePathToWrite = resourcePath + "results.txt";
         EntriesFile entriesFile = new EntriesFile(filePath);

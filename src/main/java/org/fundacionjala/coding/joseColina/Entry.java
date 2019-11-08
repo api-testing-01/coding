@@ -1,5 +1,6 @@
 package org.fundacionjala.coding.joseColina;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Entry {
@@ -8,7 +9,7 @@ public class Entry {
     private EntryReader entryReader;
 
     public Entry(List<String> entryLines){
-        this.entryLines = entryLines;
+        this.entryLines = new ArrayList<>(entryLines);
         entryReader = new EntryReader();
         accountNumber = generateAccountNumber();
     }
