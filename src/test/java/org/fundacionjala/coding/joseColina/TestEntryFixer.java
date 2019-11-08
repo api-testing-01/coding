@@ -48,7 +48,7 @@ public class TestEntryFixer {
     public void testFixEntryWithSeveralResults(){
         List<String> results = new ArrayList<>();
         EntryFixer fixer =  new EntryFixer();
-        for(int i = 16; i < lines.size(); i+=4){
+        for(int i = 16; i < 36; i+=4){
             Entry entry = new Entry(lines.subList(i, i + NUMBER_OF_LINES));
             Entry entryFixed = fixer.fixEntry(entry);
             results.add(entryFixed.getAccountNumber());
@@ -59,6 +59,19 @@ public class TestEntryFixer {
                 "666666666 AMB ['666566666', '686666666']",
                 "999999999 AMB ['899999999', '993999999', '999959999']",
                 "490067715 AMB ['490067115', '490067719', '490867715']"};
+        assertTrue(Arrays.deepEquals(actual, expected));
+    }
+    @Test
+    public void testFixEntryWithSingleResultFromILL(){
+        List<String> results = new ArrayList<>();
+        EntryFixer fixer =  new EntryFixer();
+        for(int i = 36; i < 48; i+=4){
+            Entry entry = new Entry(lines.subList(i, i + NUMBER_OF_LINES));
+            Entry entryFixed = fixer.fixEntry(entry);
+            results.add(entryFixed.getAccountNumber());
+        }
+        Object[] actual = results.toArray();
+        Object[] expected = {"123456789", "000000051", "490867715"};
         assertTrue(Arrays.deepEquals(actual, expected));
     }
 }
