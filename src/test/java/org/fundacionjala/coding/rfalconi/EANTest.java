@@ -12,6 +12,5 @@ public class EANTest {
         assertTrue("4003301018398", ean.getChecksum("4003301018398"));
         assertFalse("4003301018392", ean.getChecksum("4003301018392"));
         assertTrue("1111111111116", ean.getChecksum("1111111111116"));
-        assertFalse("11111111111DE", ean.getChecksum("11111111111DE"));
     }
 }
