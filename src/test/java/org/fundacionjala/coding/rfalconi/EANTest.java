@@ -2,14 +2,16 @@ package org.fundacionjala.coding.rfalconi;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class EANTest {
     @Test
     public void test() {
-        assertEquals("4003301018398", new EAN().getChecksum("400330101839"));
-        assertNotEquals("4003301018392", new EAN().getChecksum("400330101839"));
-        assertEquals("1111111111116", new EAN().getChecksum("111111111111"));
+        EAN ean = new EAN ();
+        assertFalse("4003301018398", ean.getChecksum("400330101839"));
+        assertTrue("4003301018398", ean.getChecksum("4003301018398"));
+        assertFalse("4003301018392", ean.getChecksum("4003301018392"));
+        assertTrue("1111111111116", ean.getChecksum("1111111111116"));
+        assertFalse("11111111111DE", ean.getChecksum("11111111111DE"));
     }
 }
