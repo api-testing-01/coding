@@ -7,24 +7,30 @@ public class EAN {
 
     private static final Logger LOGGER = Logger.getLogger("org.fundacionjala.coding.rfalconi.EAN");
     private static final int TEN = 10;
+    private static final int BARCODELENGTH = 13;
+    private static final int CHECKSUMLENGTH = 12;
 
     public boolean getChecksum(final String barcode) {
-        if (barcode.length() == 13) {
-            String newBarcode = barcode.substring(0, 12);
+        boolean valid = false;
+        if (barcode.length() == BARCODELENGTH) {
+            String newBarcode = barcode.substring(0, CHECKSUMLENGTH);
             int checksum = 0;
             int sum = this.getSum(barcode);
             if ((sum % TEN) != 0) {
                 checksum = TEN - (sum % TEN);
             }
             newBarcode = newBarcode.concat(String.valueOf(checksum));
+
+            LOGGER.log(Level.INFO, "Barcode: {0}", barcode);
+            LOGGER.log(Level.INFO, "New Barcode: {0}", newBarcode);
+
             if (barcode.equals(newBarcode)) {
-                return true;
-            } else {
-                return false;
+                valid = true;
             }
         } else {
-            return false;
+            valid = false;
         }
+        return valid;
     }
 
     public int getSum(final String barcode) {
