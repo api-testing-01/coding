@@ -22,20 +22,21 @@ public final class OCRAccount {
     }
 
     private static List<String> getAccountLines(final File inputFile) throws IOException {
-        Scanner reader = new Scanner(inputFile);
         List<String> digits = new ArrayList<>();
-        for (int i = 0; i < CHARACTER_LIMIT; i++) {
-            String line = reader.nextLine();
-            if (line != null) {
-                int j = 0;
-                for (String digit : String.format("%-27s", line).split(
-                        "(?<=\\G.{3})")) {
-                    try {
-                        digits.set(j, digits.get(j).concat(digit));
-                    } catch (IndexOutOfBoundsException e) {
-                        digits.add(digit);
+        try (Scanner reader = new Scanner(inputFile)) {
+            for (int i = 0; i < CHARACTER_LIMIT; i++) {
+                String line = reader.nextLine();
+                if (line != null) {
+                    int j = 0;
+                    for (String digit : String.format("%-27s", line).split(
+                            "(?<=\\G.{3})")) {
+                        try {
+                            digits.set(j, digits.get(j).concat(digit));
+                        } catch (IndexOutOfBoundsException e) {
+                            digits.add(digit);
+                        }
+                        j++;
                     }
-                    j++;
                 }
             }
         }
