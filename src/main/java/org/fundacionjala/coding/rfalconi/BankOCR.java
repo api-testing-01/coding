@@ -13,6 +13,9 @@ public class BankOCR {
 
     private static final Logger LOGGER = Logger.getLogger("org.fundacionjala.coding.rfalconi.BankOCR");
 
+    private static  List <String> digits = Arrays.asList(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"});
+    public int sum = 0;
+
     private static int MODULE = 11;
 
     public void userStory1() {
@@ -24,62 +27,61 @@ public class BankOCR {
      * @param accountId
      * @return
      */
-    public int userStory2(final String accountId) {
+    public boolean userStory2(final String accountId) {
+        boolean result = true;
         int sum = 0;
         char[] digits = String.valueOf(accountId).toCharArray();
         int position = digits.length;
-        for (int i = 0; i < digits.length; i++) {
-            sum = sum + (Integer.parseInt(String.valueOf(digits[i])) * position);
-            position--;
-        }
-        sum = sum % MODULE;
-        LOGGER.log( Level.INFO, "Sum result {0}", sum);
-        return sum;
-    }
-
-    public boolean validateUserStory2(final String accountId){
         if (isNumeric(accountId)) {
-            int sum = userStory2(accountId);
-            if (sum == 0) {
-                return true;
-            } else {
-                return false;
+            for (int i = 0; i < digits.length; i++) {
+                sum = sum + (Integer.parseInt(String.valueOf(digits[i])) * position);
+                position--;
             }
-        } else {
-            return false;
+            sum = sum % MODULE;
+            LOGGER.log( Level.INFO, "Sum result {0}", sum);
+            if (sum == 0)
+                result = true;
+            else
+                result = false;
+        }  else {
+            result = false;
         }
+
+        return result;
     }
 
-    public String userStory3(final String accountId) {
+    public boolean userStory3(final String accountId) {
         String filename = "src\\test\\java\\org\\fundacionjala\\coding\\rfalconi\\bankOCR.txt";
         String accountLine ="";
+        boolean result = true;
+        if (isNumeric(accountId)){
+            userStory2(accountId);
+            if(sum != 0) {
+                accountLine = accountId.concat(" ERR");
+                result = false;
+            } else {
+                accountLine = accountId;
+                result = true;
+            }
+        } else {
+            String newAccountId = replaceCharacter(accountId);
+            accountLine = newAccountId.concat(" ILL");
+            result = false;
+        }
         try {
             FileWriter fileWriter = new FileWriter(filename, true);
-            if (accountId.contains("?")) {
-                accountLine = accountId.concat(" ILL");
-                fileWriter.write(accountLine.concat("\n"));
-            } else {
-                if(userStory2(accountId) != 0) {
-                    accountLine = accountId.concat(" ERR");
-                    fileWriter.write(accountLine.concat("\n"));
-                } else {
-                    accountLine = accountId;
-                    fileWriter.write(accountLine.concat("\n"));
-                }
-            }
+            fileWriter.write(accountLine.concat("\n"));
             fileWriter.flush();
             fileWriter.close();
         } catch (IOException err) {
-            System.out.println("Error E/S: " + err);
+            LOGGER.log(Level.WARNING, "Error E/S: {0}", err);
         }
         LOGGER.log( Level.INFO, "Line added to file:: {0}", accountLine);
-        return accountLine;
+        return result;
     }
 
     public boolean isNumeric(final String accountId){
-        final List <String> digits = Arrays.asList(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"});
         final char[] accountDigits = accountId.toCharArray();
-
         boolean isNumeric = false;
         for (int i = 0; i < accountDigits.length; i++) {
             if(digits.contains(String.valueOf(accountDigits[i]))){
@@ -92,18 +94,13 @@ public class BankOCR {
         return isNumeric;
     }
 
-    public void fileReader(final String filename) {
-        try {
-            FileReader fileReader = new FileReader(filename);
-            int valor = fileReader.read();
-            while (valor != -1) {
-                System.out.print((char) valor);
-                valor = fileReader.read();
+    public String replaceCharacter(final String accountId){
+        final char[] accountDigits = accountId.toCharArray();
+        for (int i = 0; i < accountDigits.length; i++) {
+            if(!digits.contains(String.valueOf(accountDigits[i]))){
+                accountDigits[i] = '?';
             }
-            fileReader.close();
-        } catch (IOException err) {
-            System.out.println("Error E/S: " + err);
         }
-
+        return String.valueOf(accountDigits);
     }
 }
