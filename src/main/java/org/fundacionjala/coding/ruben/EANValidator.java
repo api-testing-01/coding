@@ -13,8 +13,6 @@ public final class EANValidator {
         String[] result = eanCode.split("");
         int[] eanNumbers = new int[eanCode.length()];
         int sum = 0;
-        System.out.println(eanCode.length());
-        System.out.println(eanNumbers.length);
         for (int count = 0; count < result.length; count++) {
             eanNumbers[count] = Integer.parseInt(result[count]);
         }
@@ -25,8 +23,6 @@ public final class EANValidator {
             sum = sum + eanNumbers[count];
         }
         int checkSum = CHECKSUM_CALCULATOR - (sum % CHECKSUM_CALCULATOR);
-        System.out.println(checkSum);
-        System.out.println(eanCode.charAt(eanCode.length() - 1));
         if (checkSum == eanNumbers[eanNumbers.length - 1]) {
             return true;
         } else {
