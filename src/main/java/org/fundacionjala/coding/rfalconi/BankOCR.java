@@ -1,9 +1,7 @@
 package org.fundacionjala.coding.rfalconi;
 
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
@@ -13,10 +11,9 @@ public class BankOCR {
 
     private static final Logger LOGGER = Logger.getLogger("org.fundacionjala.coding.rfalconi.BankOCR");
 
-    private static  List <String> digits = Arrays.asList(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"});
-    public int sum = 0;
-
+    private static List<String> digits = Arrays.asList(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"});
     private static int MODULE = 11;
+    public int sum = 0;
 
     public void userStory1() {
 
@@ -24,6 +21,7 @@ public class BankOCR {
 
     /**
      * Given an account id calculates the checksum to validate if the account number is valid or not
+     *
      * @param accountId
      * @return
      */
@@ -38,12 +36,12 @@ public class BankOCR {
                 position--;
             }
             sum = sum % MODULE;
-            LOGGER.log( Level.INFO, "Sum result {0}", sum);
+            LOGGER.log(Level.INFO, "Sum result {0}", sum);
             if (sum == 0)
                 result = true;
             else
                 result = false;
-        }  else {
+        } else {
             result = false;
         }
 
@@ -52,11 +50,11 @@ public class BankOCR {
 
     public boolean userStory3(final String accountId) {
         String filename = "src\\test\\java\\org\\fundacionjala\\coding\\rfalconi\\bankOCR.txt";
-        String accountLine ="";
+        String accountLine = "";
         boolean result = true;
-        if (isNumeric(accountId)){
+        if (isNumeric(accountId)) {
             userStory2(accountId);
-            if(sum != 0) {
+            if (sum != 0) {
                 accountLine = accountId.concat(" ERR");
                 result = false;
             } else {
@@ -76,17 +74,17 @@ public class BankOCR {
         } catch (IOException err) {
             LOGGER.log(Level.WARNING, "Error E/S: {0}", err);
         }
-        LOGGER.log( Level.INFO, "Line added to file:: {0}", accountLine);
+        LOGGER.log(Level.INFO, "Line added to file:: {0}", accountLine);
         return result;
     }
 
-    public boolean isNumeric(final String accountId){
+    public boolean isNumeric(final String accountId) {
         final char[] accountDigits = accountId.toCharArray();
         boolean isNumeric = false;
         for (int i = 0; i < accountDigits.length; i++) {
-            if(digits.contains(String.valueOf(accountDigits[i]))){
+            if (digits.contains(String.valueOf(accountDigits[i]))) {
                 isNumeric = true;
-            } else{
+            } else {
                 isNumeric = false;
                 break;
             }
@@ -94,10 +92,10 @@ public class BankOCR {
         return isNumeric;
     }
 
-    public String replaceCharacter(final String accountId){
+    public String replaceCharacter(final String accountId) {
         final char[] accountDigits = accountId.toCharArray();
         for (int i = 0; i < accountDigits.length; i++) {
-            if(!digits.contains(String.valueOf(accountDigits[i]))){
+            if (!digits.contains(String.valueOf(accountDigits[i]))) {
                 accountDigits[i] = '?';
             }
         }
