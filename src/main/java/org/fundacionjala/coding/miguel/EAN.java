@@ -24,4 +24,9 @@ public class EAN {
         checksum = count % checksumLimit == 0 ? checksum : checksumLimit - (count % checksumLimit);
         return num[num.length - 1] == checksum;
     }
+
+    public static void main(String[] args) {
+        String dudas = "9783827317108";
+        System.out.println(new EAN().eanValidate(dudas));
+    }
 }
