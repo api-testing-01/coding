@@ -11,16 +11,10 @@ public final class EANValidator {
         int sum = 0;
         for (int i = 0; i < numberArray.length - 1; i++) {
             int number = Integer.parseInt(numberArray[i]);
-            if (i % 2 == 0) {
-                sum += number;
-            } else {
-                sum += number * multiplier;
-            }
+            sum += i % 2 == 0 ? number : number * multiplier;
         }
-        int checksum = 0;
-        if (sum % ten != 0) {
-            checksum = ten - (sum % ten);
-        }
+
+        int checksum = sum % ten != 0 ? ten - (sum % ten) : 0;
         return checksum == Integer.parseInt(numberArray[numberArray.length - 1]);
     }
 }
