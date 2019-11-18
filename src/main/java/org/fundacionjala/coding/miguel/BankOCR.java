@@ -3,7 +3,7 @@ package org.fundacionjala.coding.miguel;
 import java.util.Arrays;
 
 public class BankOCR {
-    public static final String[] NUMBER_MAP = new String[]
+    protected static final String[] NUMBER_MAP = new String[]
             {" _ | ||_|", "     |  |", " _  _||_ ", " _  _| _|",
             "   |_|  |", " _ |_  _|", " _ |_ |_|", " _   |  |", " _ |_||_|", " _ |_| _|"};
     private static final int NUMBERS_SIZE = 9;
