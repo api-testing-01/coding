@@ -1,6 +1,5 @@
 package org.fundacionjala.coding.miguel;
 
-import java.io.IOException;
 import java.util.Arrays;
 
 public class BankOCR {
@@ -55,7 +54,7 @@ public class BankOCR {
         return (result % DIVISIBLE == 0);
     }
 
-    public String verifyAndPrintInFile(final String[] numberAccount) throws IOException {
+    public String verifyAndPrintInFile(final String[] numberAccount) {
         String isValid = "";
         String isAccountNumber = translateNumberAccount(numberAccount);
         if (!isAccountNumber.contains("?")) {
