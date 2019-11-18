@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class FileAccountReader {
     private static final String BASE_PATH = System.getProperty("user.dir")
-            .concat("\\src\\main\\java\\org\\fundacionjala\\coding\\miguel\\resource\\");
+            .concat("/src/main/java/org/fundacionjala/coding/miguel/resource/");
     private static final int ARRAY_SIZE = 3;
 
      public String[] readerAccountFile(final String fileName) throws IOException {
