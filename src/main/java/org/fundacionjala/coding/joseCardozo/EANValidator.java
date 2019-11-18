@@ -23,20 +23,13 @@ public final class EANValidator {
         for (int i = 0; i < numbers.length - 1; i++) {
             sum += numbers[i] % 2 == 0 ? numbers[i] : numbers[i] * three;
         }
-        boolean result = checkSum(sum, numbers[EAN_CODE_LENGTH - 1]);
-        return result;
+        return checkSum(sum, numbers[EAN_CODE_LENGTH - 1]);
     }
 
     private static boolean checkSum(int sum, int lastDigit) {
         final int modToCheckSum = 10;
         int mod10 = sum % modToCheckSum;
-        int checksum;
-        if (mod10 == 0) {
-            checksum = 0;
-        } else {
-            checksum = modToCheckSum - mod10;
-        }
-
+        int checksum = (mod10 == 0) ? 0 : modToCheckSum - mod10;
         return checksum == lastDigit;
     }
 }
