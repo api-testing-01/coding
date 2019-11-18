@@ -4,8 +4,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class FileAccountReader {
+
+    private static final Logger LOGGER = Logger.getLogger("org.fundacionjala.coding.miguel.FileAccountReader");
     private static final String BASE_PATH = System.getProperty("user.dir")
             .concat("/src/main/java/org/fundacionjala/coding/miguel/resource/");
     private static final int ARRAY_SIZE = 3;
@@ -23,7 +27,7 @@ public class FileAccountReader {
                  index++;
              }
          }  catch (Exception err) {
-             System.out.println("Error E/S: {0}" + err);
+             LOGGER.log(Level.WARNING, "Error E/S: {0}", err);
          }
          return accountArrayOnFile;
      }
@@ -34,7 +38,7 @@ public class FileAccountReader {
          try (FileWriter fileWriter = new FileWriter(filename, true)) {
              fileWriter.write(account.concat("\n"));
          }  catch (Exception err) {
-             System.out.println("Error E/S: {0}" + err);
+             LOGGER.log(Level.WARNING, "Error E/S: {0}", err);
          }
     }
 }
