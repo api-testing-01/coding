@@ -19,16 +19,6 @@ public class EANValidatorTest {
 
     @Test
     public void test03() {
-        assertTrue(EANValidator.validate("9783815820865"));
-    }
-
-    @Test
-    public void test04() {
-        assertFalse(EANValidator.validate("9783815820864"));
-    }
-
-    @Test
-    public void test05() {
-        assertFalse(EANValidator.validate("9783827317100"));
+        assertTrue(EANValidator.validate("4000000000600"));
     }
 }
