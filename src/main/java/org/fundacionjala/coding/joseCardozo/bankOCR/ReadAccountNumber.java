@@ -20,7 +20,6 @@ public class ReadAccountNumber {
 
     public String getAccountNumber(final String fileName) throws IOException {
         String filePath = BASE_PATH.concat(fileName);
-        System.out.println("the path is: " + filePath);
         String[] accountArrayOnFile = new String[ARRAY_SIZE];
         Arrays.fill(accountArrayOnFile, "");
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
@@ -49,7 +48,6 @@ public class ReadAccountNumber {
                 }
             }
         }
-        System.out.println("The account number is: " + result);
         return result;
     }
 
