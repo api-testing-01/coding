@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ReadAccountNumber {
 
@@ -14,16 +16,15 @@ public class ReadAccountNumber {
             .concat("/src/main/java/org/fundacionjala/coding/joseCardozo/bankOCR/resource/");
     private static final int ARRAY_SIZE = 9;
     private static final int MOD = 11;
+    private static final Logger LOGGER = Logger.getLogger(ReadAccountNumber.class.getName());
 
     public String getAccountNumber(final String fileName) throws IOException {
         String filePath = BASE_PATH.concat(fileName);
         System.out.println("the path is: " + filePath);
-        FileReader fileReader = new FileReader(filePath);
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
         String[] accountArrayOnFile = new String[ARRAY_SIZE];
         Arrays.fill(accountArrayOnFile, "");
-
         try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
            String line;
            while ((line = bufferedReader.readLine()) != null) {
                String[] subStringArray = line.split("(?<=\\G...)");
@@ -32,8 +33,8 @@ public class ReadAccountNumber {
                    accountArrayOnFile[i] += String.valueOf(subStringArray[i]);
                }
            }
-        } finally {
-            fileReader.close();
+        } catch (Exception e){
+            LOGGER.log(Level.WARNING, "An error occurred trying to read the file, the error is: " + e.getMessage());
         }
 
         return convertToAccountNumber(accountArrayOnFile);
