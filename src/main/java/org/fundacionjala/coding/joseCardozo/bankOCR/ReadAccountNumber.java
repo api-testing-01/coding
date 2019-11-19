@@ -23,8 +23,7 @@ public class ReadAccountNumber {
         System.out.println("the path is: " + filePath);
         String[] accountArrayOnFile = new String[ARRAY_SIZE];
         Arrays.fill(accountArrayOnFile, "");
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
            String line;
            while ((line = bufferedReader.readLine()) != null) {
                String[] subStringArray = line.split("(?<=\\G...)");
@@ -33,7 +32,7 @@ public class ReadAccountNumber {
                    accountArrayOnFile[i] += String.valueOf(subStringArray[i]);
                }
            }
-        } catch (Exception e){
+        } catch (Exception e) {
             LOGGER.log(Level.WARNING, "An error occurred trying to read the file, the error is: " + e.getMessage());
         }
 
