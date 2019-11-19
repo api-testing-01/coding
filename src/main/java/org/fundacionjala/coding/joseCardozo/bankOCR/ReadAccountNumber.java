@@ -11,7 +11,7 @@ public class ReadAccountNumber {
             {" _ | ||_|", "     |  |", " _  _||_ ", " _  _| _|",
              "   |_|  |", " _ |_  _|", " _ |_ |_|", " _   |  |", " _ |_||_|", " _ |_| _|"};
     private static final String BASE_PATH = System.getProperty("user.dir")
-            .concat("\\src\\main\\java\\org\\fundacionjala\\coding\\joseCardozo\\bankOCR\\resource\\");
+            .concat("/src/main/java/org/fundacionjala/coding/joseCardozo/bankOCR/resource/");
     private static final int ARRAY_SIZE = 9;
     private static final int MOD = 11;
 
