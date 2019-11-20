@@ -1,27 +1,28 @@
 package org.fundacionjala.coding.ruben;
 
-public class EANValidator {
+public final class EANValidator {
+
+    private static final int MULTIPLIER_NUMBER = 3;
+    private static final int MOD_NUMBER = 10;
+    private static final int LAST_DIGIT = 12;
+
+    private EANValidator() {
+        //private class
+    }
 
     public static boolean validate(final String eanCode) {
-        String[] result = eanCode.split("");
-        int[] eanNumbers = new int[eanCode.length()];
-        int sum =0;
-        for (int count = 0; count < result.length; count++) {
-            eanNumbers[count] = Integer.parseInt(result[count]);
-        }
-        for (int count = 0; count < eanNumbers.length-1; count++) {
-            if(eanNumbers[count]%2 == 0) {
-                sum = sum + eanNumbers[count];
+        int sum = 0;
+
+        for (int count = 0; count < eanCode.split("").length - 1; count++) {
+            int number = Character.getNumericValue(eanCode.charAt(count));
+            if (count % 2 == 0) {
+                sum = sum + number;
             } else {
-                sum = sum + eanNumbers[count]*3;
+                sum = sum + number * MULTIPLIER_NUMBER;
             }
         }
-        int checkSum = 10 - (sum % 10);
-        System.out.println(checkSum);
-        if(checkSum == eanNumbers[eanNumbers.length-1]) {
-            return true;
-        } else {
-            return false;
-        }
+
+        int checkSum = (sum % MOD_NUMBER);
+        return checkSum == Character.getNumericValue(eanCode.charAt(LAST_DIGIT));
     }
 }
