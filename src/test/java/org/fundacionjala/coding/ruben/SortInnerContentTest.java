@@ -61,4 +61,10 @@ public class SortInnerContentTest {
         Sort.validateSentence("ab", " ");
         assertEquals("Please enter a complete sentence", logger.getName());
     }
+
+    @Test
+    public void sentenceMonosyllables() {
+        assertEquals("I am",
+                Sort.validateSentence("I am", " "));
+    }
 }

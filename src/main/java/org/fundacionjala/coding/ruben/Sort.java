@@ -1,4 +1,6 @@
 package org.fundacionjala.coding.ruben;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -10,23 +12,21 @@ final class Sort {
         //not called
     }
 
-    private static String sortTheInnerContent(final String sentence, final String regex) {
+    public static String sortTheInnerContent(final String sentence, final String regex) {
         String[] words = sentence.split(regex);
         StringBuilder newWord = new StringBuilder();
         for (String word : words) {
             String firstLetter = word.substring(0, 1);
             String lastLetter = word.substring(word.length() - 1);
-            StringBuilder innerLetters = new StringBuilder(word.substring(1, word.length() - 1));
-            for (int aux1 = 0; aux1 < innerLetters.length() - 1; aux1++) {
-                for (int aux2 = aux1 + 1; aux2 < innerLetters.length(); aux2++) {
-                    if (innerLetters.charAt(aux1) < innerLetters.charAt(aux2)) {
-                        char temp = innerLetters.charAt(aux1);
-                        innerLetters.setCharAt(aux1, innerLetters.charAt(aux2));
-                        innerLetters.setCharAt(aux2, temp);
-                    }
-                }
+            if (word.length() == 1) {
+                String[] innerLetters = word.substring(1, 1).split("");
+                Arrays.sort(innerLetters, Comparator.reverseOrder());
+                newWord.append(firstLetter).append(String.join("", innerLetters)).append(regex);
+            } else {
+                String[] innerLetters = word.substring(1, word.length() - 1).split("");
+                Arrays.sort(innerLetters, Comparator.reverseOrder());
+                newWord.append(firstLetter).append(String.join("", innerLetters)).append(lastLetter).append(regex);
             }
-            newWord.append(firstLetter).append(innerLetters.toString()).append(lastLetter).append(regex);
         }
         return newWord.substring(0, newWord.length() - 1);
     }
