@@ -20,6 +20,7 @@ public class SortContentTest {
         assertEquals("srot the inner ctonnet in dsnnieedcg oredr",
                 SortContent.sortTheInnerContent("sort the inner content in descending order"));
         assertEquals("tihs ktaa is esay", SortContent.sortTheInnerContent("this kata is easy"));
+        assertEquals("I am", SortContent.sortTheInnerContent("I am"));
     }
 
 }
