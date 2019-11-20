@@ -31,20 +31,20 @@ public class AccountTest {
     public void getAccountIllegibleTest() throws FileNotFoundException {
         File file = new File("src/test/resources/ruben/accountIllegible.txt");
         String accountNumber = Account.getAccountNumber(file);
-        Assert.assertEquals("1234?678? ILL",AccountChecksum.checkLegibleAccount(accountNumber));
+        Assert.assertEquals("1234?678? ILL", AccountChecksum.checkLegibleAccount(accountNumber));
     }
 
     @Test
     public void getAccountLegibleTest() throws FileNotFoundException {
         File file = new File("src/test/resources/ruben/account123456789.txt");
         String accountNumber = Account.getAccountNumber(file);
-        Assert.assertEquals("123456789",AccountChecksum.checkLegibleAccount(accountNumber));
+        Assert.assertEquals("123456789", AccountChecksum.checkLegibleAccount(accountNumber));
     }
 
     @Test
     public void getAccountErrorTest() throws FileNotFoundException {
         File file = new File("src/test/resources/ruben/accountError.txt");
         String accountNumber = Account.getAccountNumber(file);
-        Assert.assertEquals("664371495 ERR",AccountChecksum.checkValidAccount(accountNumber));
+        Assert.assertEquals("664371495 ERR", AccountChecksum.checkValidAccount(accountNumber));
     }
 }

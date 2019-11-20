@@ -6,9 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Account {
+public final class Account {
 
-    public static String getAccountNumber(File file) throws FileNotFoundException {
+    private static final int QUANTITY_CHAR = 3;
+
+    private Account() {
+        // private constructor
+    }
+
+    public static String getAccountNumber(final File file) throws FileNotFoundException {
         StringBuilder accountNumber = new StringBuilder();
         List<String> digits = getAccountDigits(file);
         for (String digit : digits) {
@@ -17,10 +23,10 @@ public class Account {
         return accountNumber.toString();
     }
 
-    private static List<String> getAccountDigits(File file) throws FileNotFoundException {
+    private static List<String> getAccountDigits(final File file) throws FileNotFoundException {
         List<String> digits = new ArrayList<>();
         Scanner scanner = new Scanner(file);
-        for (int aux1 = 0; aux1 < 3 ; aux1++) {
+        for (int aux1 = 0; aux1 < QUANTITY_CHAR; aux1++) {
             String line = scanner.nextLine();
             if (line != null) {
                 int aux2 = 0;

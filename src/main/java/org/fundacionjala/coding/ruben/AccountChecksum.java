@@ -1,6 +1,6 @@
 package org.fundacionjala.coding.ruben;
 
-public class AccountChecksum {
+public final class AccountChecksum {
 
     private static final int MODAL = 11;
     private static final String ILLEGIBLE = "?";
