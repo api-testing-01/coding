@@ -13,7 +13,7 @@ public final class EANValidator {
         int expected = Character.getNumericValue(eanCode.charAt(TWELVE_DIGITS));
         int actual = getControlDigit(eanCode.substring(0, TWELVE_DIGITS));
 
-        return (actual == 0) ? 0 == expected : DIVIDABLE_BY_TEN - actual == expected;
+        return actual == expected;
     }
 
     private static int getControlDigit(final String code) {
