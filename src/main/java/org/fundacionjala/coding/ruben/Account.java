@@ -41,6 +41,7 @@ public final class Account {
                 }
             }
         }
+        scanner.close();
         return digits;
     }
 }
