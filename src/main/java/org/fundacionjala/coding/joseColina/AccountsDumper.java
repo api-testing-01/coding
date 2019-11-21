@@ -10,11 +10,6 @@ import java.util.Scanner;
 
 public class AccountsDumper {
 
-    private List<Account> accounts;
-    private String path;
-    private File file;
-    private Scanner scanner;
-
     public void writeToFile(String path, List<Account> accounts){
         String allEntries = "";
         for(Account account : accounts){

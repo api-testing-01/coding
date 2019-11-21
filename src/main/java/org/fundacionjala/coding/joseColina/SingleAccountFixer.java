@@ -11,20 +11,11 @@ public class SingleAccountFixer {
         Account accountFixed = new Account(account);
         List<String> entryLines = new ArrayList<>(account.getLines());
         List<String> accountsResults = new ArrayList<>();
-        AccountValidator validator = new AccountValidator();
         for (int i=0; i < entryLines.size() - 1; i++){
             int offset = 0;
             int lengthOfLine = entryLines.get(i).length();
             for(int j= 0; j < lengthOfLine; j++){
                 List<String> linesFixed = getLinesFixed(i, j, offset, entryLines);
-
-/*
-                System.out.println(linesFixed.get(0).toString());
-                System.out.println(linesFixed.get(1).toString());
-                System.out.println(linesFixed.get(2).toString());
-                System.out.println(linesFixed.get(3).toString());
-*/
-
                 Account accountValidated = new Account(linesFixed);
                 String accountNumber = accountValidated.getAccountNumber();
                 if(!accountNumber.contains("ILL") && !accountNumber.contains("ERR")){

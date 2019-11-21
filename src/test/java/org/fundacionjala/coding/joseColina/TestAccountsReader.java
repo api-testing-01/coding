@@ -13,7 +13,7 @@ public class TestAccountsReader {
     public void testReadAccounts(){
         String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\joseColina\\";
         String filePath = resourcePath + "entries.txt";
-        AccountsReader accountsReader = new AccountsReader(filePath);
+        AccountsReader accountsReader = new AccountsReader();
         String s1 = "000000000 ERR";
         String s2 = "111111111 ERR";
         String[] expectedEntries = {s1, s2};
@@ -24,15 +24,5 @@ public class TestAccountsReader {
             System.out.println(actualEntries[i]);
         }
         assertTrue(Arrays.deepEquals(expectedEntries, actualEntries));
-    }
-    @Test
-    public void testWriteToFile(){
-        String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\joseColina\\";
-        String filePath = resourcePath + "entries.txt";
-        String filePathToWrite = resourcePath + "results.txt";
-        AccountsReader accountsReader = new AccountsReader(filePath);
-        accountsReader.readEntryLines();
-        accountsReader.writeToFile(filePathToWrite);
-
     }
 }

@@ -10,7 +10,7 @@ public class TestAccountDumper {
         String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\joseColina\\";
         String filePath = resourcePath + "entries.txt";
         String filePathToWrite = resourcePath + "results.txt";
-        AccountsReader accounts = new AccountsReader(filePath);
+        AccountsReader accounts = new AccountsReader();
         AccountsDumper accountsWriter = new AccountsDumper();
         accountsWriter.writeToFile(filePathToWrite, accounts.readAccounts(filePath));
 
