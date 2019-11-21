@@ -31,7 +31,7 @@ public class SingleAccountFixer {
         return accountFixed;
     }
 
-    private List<String> sortResults(List<String> results) {
+    private List<String> sortResults(final List<String> results) {
         List<String> sortedResults = results.stream().sorted().collect(Collectors.toList());
         return sortedResults;
     }

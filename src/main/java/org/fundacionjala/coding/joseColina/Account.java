@@ -44,11 +44,11 @@ public class Account {
         return entryLines;
     }
 
-    public void setAccountNumber(String accountNumber) {
+    public void setAccountNumber(final String accountNumber) {
         this.accountNumber = accountNumber;
     }
 
-    public void setEntryLines(List<String> entryLines) {
+    public void setEntryLines(final List<String> entryLines) {
         this.entryLines = new ArrayList<>(entryLines);
     }
 
