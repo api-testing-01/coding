@@ -14,7 +14,6 @@ public class AccountsReader {
 
     public AccountsReader() {
         accounts = new ArrayList<>();
-        this.path = path;
     }
 
     public List<Account> readAccounts(final String path) {
