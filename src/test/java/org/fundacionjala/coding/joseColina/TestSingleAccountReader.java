@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
 
-public class TestAccountReader {
+public class TestSingleAccountReader {
     private static List<String> lines;
 
     @BeforeClass

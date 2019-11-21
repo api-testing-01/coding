@@ -4,14 +4,14 @@ import java.util.List;
 
 public class TransferAccounts {
     private AccountsReader reader;
-    private AccountsDumper writer;
+    private AccountsWriter writer;
     private AccountsFixer fixer;
     private String inputPath;
     private String outputPath;
 
     public TransferAccounts(){
         reader = new AccountsReader();
-        writer =  new AccountsDumper();
+        writer =  new AccountsWriter();
         fixer = new AccountsFixer();
     }
 
