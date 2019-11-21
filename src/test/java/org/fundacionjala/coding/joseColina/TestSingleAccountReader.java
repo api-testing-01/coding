@@ -25,6 +25,7 @@ public class TestSingleAccountReader {
             while (scanner.hasNextLine()) {
                 lines.add(scanner.nextLine());
             }
+            System.out.println("size of lines: "+lines.size());
         } catch (Exception e) {
             System.out.println("Error opening file: " + e.getMessage());
         }

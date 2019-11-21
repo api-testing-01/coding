@@ -36,7 +36,8 @@ public class SingleAccountFixer {
         return sortedResults;
     }
 
-    private List<String> getLinesFixed(int numberOfLine, int positionOfChar, int offset, final List<String> entryLines) {
+    private List<String> getLinesFixed(int numberOfLine, int positionOfChar, int offset,
+                                       final List<String> entryLines) {
         List<String> linesResults = new ArrayList<>(entryLines);
         StringBuilder lineFixed = new StringBuilder(entryLines.get(numberOfLine));
         String replaceSymbol = "";
