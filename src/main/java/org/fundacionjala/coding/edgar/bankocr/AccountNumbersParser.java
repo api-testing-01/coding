@@ -2,13 +2,15 @@ package org.fundacionjala.coding.edgar.bankocr;
 
 import java.util.Arrays;
 
-class AccountNumbersParser {
+public final class AccountNumbersParser {
+    private AccountNumbersParser() {
+    }
 
     private static final int NUMBER_OF_DIGIT_COLS = 3;
     private static final int NUMBER_OF_DIGIT_ROWS = 3;
     private static final int NUMBER_OF_DIGITS = 9;
 
-    static String parseAccountNumber(char[][] accountNumber) {
+    static String parseAccountNumber(final char[][] accountNumber) {
 
         StringBuilder sb = new StringBuilder();
 
@@ -28,7 +30,7 @@ class AccountNumbersParser {
         return sb.toString();
     }
 
-    static char parseDigit(char[][] digit) {
+    static char parseDigit(final char[][] digit) {
 
         if (Arrays.deepEquals(digit, Digits.ZERO)) {
             return '0';
