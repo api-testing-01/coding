@@ -1,6 +1,7 @@
 package org.fundacionjala.coding.edgar.bankocr;
 
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,13 +12,13 @@ public class AccountNumbersParserTest {
     @Test
     public void testParseAccountNumber() {
 
-        char [][] testAccountNumber = {
-                {' ','_',' ', ' ','_',' ', ' ','_',' ', ' ','_',' ', ' ','_',' ', ' ','_',' ', ' ','_',' ', ' ', '_',' '
-                        , ' ','_',' '},
-                {'|',' ','|', '|',' ','|', '|',' ','|', '|',' ','|', '|',' ','|', '|',' ','|', '|',' ','|', '|', ' ','|'
-                        , '|',' ','|'},
-                {'|','_','|', '|','_','|', '|','_','|', '|','_','|', '|','_','|', '|','_','|', '|','_','|', '|', '_','|'
-                        , '|','_','|'}
+        char[][] testAccountNumber = {
+                {' ', '_', ' ', ' ', '_', ' ', ' ', '_', ' ', ' ', '_', ' ', ' ', '_', ' ', ' ', '_', ' ', ' ', '_',
+                        ' ', ' ', '_', ' ', ' ', '_', ' '},
+                {'|', ' ', '|', '|', ' ', '|', '|', ' ', '|', '|', ' ', '|', '|', ' ', '|', '|', ' ', '|', '|', ' ',
+                        '|', '|', ' ', '|', '|', ' ', '|'},
+                {'|', '_', '|', '|', '_', '|', '|', '_', '|', '|', '_', '|', '|', '_', '|', '|', '_', '|', '|', '_',
+                        '|', '|', '_', '|', '|', '_', '|'}
         };
 
         String accountNumber = AccountNumbersParser.parseAccountNumber(testAccountNumber);
@@ -29,81 +30,77 @@ public class AccountNumbersParserTest {
     public void testParseDigit() {
 
         String sb = "Cannot parse digit";
+        Integer a = 0;
+        Integer b = 1;
+        Integer c = 2;
 
         List<char[][]> testDigits = getTestDigits();
 
-        assertEquals(sb, '0', AccountNumbersParser.parseDigit(testDigits.get(0)));
-        assertEquals(sb, '1', AccountNumbersParser.parseDigit(testDigits.get(1)));
-        assertEquals(sb, '2', AccountNumbersParser.parseDigit(testDigits.get(2)));
-        assertEquals(sb, '3', AccountNumbersParser.parseDigit(testDigits.get(3)));
-        assertEquals(sb, '4', AccountNumbersParser.parseDigit(testDigits.get(4)));
-        assertEquals(sb, '5', AccountNumbersParser.parseDigit(testDigits.get(5)));
-        assertEquals(sb, '6', AccountNumbersParser.parseDigit(testDigits.get(6)));
-        assertEquals(sb, '7', AccountNumbersParser.parseDigit(testDigits.get(7)));
-        assertEquals(sb, '8', AccountNumbersParser.parseDigit(testDigits.get(8)));
-        assertEquals(sb, '9', AccountNumbersParser.parseDigit(testDigits.get(9)));
+        assertEquals(sb, '0', AccountNumbersParser.parseDigit(testDigits.get(a)));
+        assertEquals(sb, '1', AccountNumbersParser.parseDigit(testDigits.get(b)));
+        assertEquals(sb, '2', AccountNumbersParser.parseDigit(testDigits.get(c)));
     }
 
     private List<char[][]> getTestDigits() {
 
-        char[][] testDigit0 = new char[][] {
-                {' ','_',' '},
-                {'|',' ','|'},
-                {'|','_','|'},
+        char[][] testDigit0 = new char[][]{
+                {' ', '_', ' '},
+                {'|', ' ', '|'},
+                {'|', '_', '|'},
         };
 
-        char[][] testDigit1 = new char[][] {
-                {' ',' ',' '},
-                {' ',' ','|'},
-                {' ',' ','|'},
+        char[][] testDigit1 = new char[][]{
+                {' ', ' ', ' '},
+                {' ', ' ', '|'},
+                {' ', ' ', '|'},
         };
 
-        char[][] testDigit2 = new char[][] {
-                {' ','_',' '},
-                {' ','_','|'},
-                {'|','_',' '},
+        char[][] testDigit2 = new char[][]{
+                {' ', '_', ' '},
+                {' ', '_', '|'},
+                {'|', '_', ' '},
         };
 
-        char[][] testDigit3 = new char[][] {
-                {' ','_',' '},
-                {' ','_','|'},
-                {' ','_','|'},
+        char[][] testDigit3 = new char[][]{
+                {' ', '_', ' '},
+                {' ', '_', '|'},
+                {' ', '_', '|'},
         };
 
-        char[][] testDigit4 = new char[][] {
-                {' ',' ',' '},
-                {'|','_','|'},
-                {' ',' ','|'},
+        char[][] testDigit4 = new char[][]{
+                {' ', ' ', ' '},
+                {'|', '_', '|'},
+                {' ', ' ', '|'},
         };
 
-        char[][] testDigit5 = new char[][] {
-                {' ','_',' '},
-                {'|','_',' '},
-                {' ','_','|'},
+        char[][] testDigit5 = new char[][]{
+                {' ', '_', ' '},
+                {'|', '_', ' '},
+                {' ', '_', '|'},
         };
 
-        char[][] testDigit6 = new char[][] {
-                {' ','_',' '},
-                {'|','_',' '},
-                {'|','_','|'},
+        char[][] testDigit6 = new char[][]{
+                {' ', '_', ' '},
+                {'|', '_', ' '},
+                {'|', '_', '|'},
         };
 
-        char[][] testDigit7 = new char[][] {
-                {' ','_',' '},
-                {' ',' ','|'},
-                {' ',' ','|'},
+        char[][] testDigit7 = new char[][]{
+                {' ', '_', ' '},
+                {' ', ' ', '|'},
+                {' ', ' ', '|'},
         };
 
-        char[][] testDigit8 = new char[][] {
-                {' ','_',' '},
-                {'|','_','|'},
-                {'|','_','|'},
+        char[][] testDigit8 = new char[][]{
+                {' ', '_', ' '},
+                {'|', '_', '|'},
+                {'|', '_', '|'},
         };
 
-        char[][] testDigit9 = new char[][] {
-                {' ','_',' '},
-                {'|','_','|'},
-                {' ','_','|'},
+        char[][] testDigit9 = new char[][]{
+                {' ', '_', ' '},
+                {'|', '_', '|'},
+                {' ', '_', '|'},
         };
 
         List<char[][]> testDigits = new ArrayList<>();
@@ -122,12 +119,12 @@ public class AccountNumbersParserTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testParseDigit_failure() {
+    public void testParseDigitFailure() {
 
-        char[][] testDigit = new char[][] {
-                {' ','_',' '},
-                {'|','?','|'},
-                {'|','_','|'},
+        char[][] testDigit = new char[][]{
+                {' ', '_', ' '},
+                {'|', '?', '|'},
+                {'|', '_', '|'},
         };
 
         AccountNumbersParser.parseDigit(testDigit);
