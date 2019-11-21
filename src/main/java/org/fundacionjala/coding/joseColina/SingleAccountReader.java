@@ -9,46 +9,46 @@ public class SingleAccountReader {
     private static final int WIDTH_OF_DIGITS = 3;
     private String accountNumber;
     private static final Map<String, Integer> MAP_OF_DIGITS = new HashMap<String, Integer>() {{
-        put(" _ " +
-                "| |" +
-                "|_|" +
-                "   ", 0);
-        put("   " +
-                "  |" +
-                "  |" +
-                "   ", 1);
-        put(" _ " +
-                " _|" +
-                "|_ " +
-                "   ", 2);
-        put(" _ " +
-                " _|" +
-                " _|" +
-                "   ", 3);
-        put("   " +
-                "|_|" +
-                "  |" +
-                "   ", 4);
-        put(" _ " +
-                "|_ " +
-                " _|" +
-                "   ", 5);
-        put(" _ " +
-                "|_ " +
-                "|_|" +
-                "   ", 6);
-        put(" _ " +
-                "  |" +
-                "  |" +
-                "   ", 7);
-        put(" _ " +
-                "|_|" +
-                "|_|" +
-                "   ", 8);
-        put(" _ " +
-                "|_|" +
-                " _|" +
-                "   ", 9);
+        put(" _ "
+                + "| |"
+                + "|_|"
+                + "   ", 0);
+        put("   "
+                + "  |"
+                + "  |"
+                + "   ", 1);
+        put(" _ "
+                + " _|"
+                + "|_ "
+                + "   ", 2);
+        put(" _ "
+                + " _|"
+                + " _|"
+                + "   ", 3);
+        put("   "
+                + "|_|"
+                + "  |"
+                + "   ", 4);
+        put(" _ "
+                + "|_ "
+                + " _|"
+                + "   ", 5);
+        put(" _ "
+                + "|_ "
+                + "|_|"
+                + "   ", 6);
+        put(" _ "
+                + "  |"
+                + "  |"
+                + "   ", 7);
+        put(" _ "
+                + "|_|"
+                + "|_|"
+                + "   ", 8);
+        put(" _ "
+                + "|_|"
+                + " _|"
+                + "   ", 9);
     }};
 
     public SingleAccountReader() {

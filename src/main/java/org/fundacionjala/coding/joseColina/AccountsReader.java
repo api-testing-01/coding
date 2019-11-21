@@ -17,7 +17,7 @@ public class AccountsReader {
         this.path = path;
     }
 
-    public List<Account> readAccounts(String path) {
+    public List<Account> readAccounts(final String path) {
         cleanAccounts();
         this.path = path;
         List<List> entryLines = readEntryLines();

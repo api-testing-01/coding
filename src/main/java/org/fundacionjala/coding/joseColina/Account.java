@@ -10,13 +10,13 @@ public class Account {
     private AccountValidator validator;
     private boolean isValid;
 
-    public Account(Account account) {
+    public Account(final Account account) {
         accountNumber = account.getAccountNumber();
         entryLines = new ArrayList<>(account.getLines());
         isValid = account.isValid();
     }
 
-    public Account(List<String> entryLines) {
+    public Account(final List<String> entryLines) {
         this.entryLines = new ArrayList<>(entryLines);
         accountReader = new SingleAccountReader();
         validator = new AccountValidator();

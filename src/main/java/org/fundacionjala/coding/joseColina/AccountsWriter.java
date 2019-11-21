@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AccountsWriter {
 
-    public void writeToFile(String path, List<Account> accounts) {
+    public void writeToFile(final String path, final List<Account> accounts) {
         String allEntries = "";
         for (Account account : accounts) {
             allEntries += account.getAccountNumber() + "\n";

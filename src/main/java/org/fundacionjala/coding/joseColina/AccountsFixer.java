@@ -10,7 +10,7 @@ public class AccountsFixer {
         fixer = new SingleAccountFixer();
     }
 
-    public List<Account> fixAccounts(List<Account> accounts) {
+    public List<Account> fixAccounts(final List<Account> accounts) {
         List<Account> accountsFixed = new ArrayList<>();
         for (Account account : accounts) {
             if (!account.isValid()) {
