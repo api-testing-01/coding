@@ -1,24 +1,24 @@
 package org.fundacionjala.coding.joseColina;
 
-public class EntryValidator {
+public class AccountValidator {
     private static final int RADIX_ELEVEN = 11;
     private int checksum;
 
-    public EntryValidator(){
+    public AccountValidator(){
     }
 
-    public Entry validateEntry(final Entry entry){
-        Entry entryValidated = entry;
-        String accountValidated = entry.getAccountNumber();
-        if(entry.getAccountNumber().contains("?")){
+    public String validateAccountNumber(final String account){//Account account){
+//        Account accountValidated = new Account(account);
+        String accountValidated = account;//account.getAccountNumber();
+        if(accountValidated.contains("?")){
             accountValidated += " ILL";
-            entryValidated.setAccountNumber(accountValidated);
+//            accountValidated.setAccountNumber(accountValidated);
         }
-        else if(!isChecksumValid(entry.getAccountNumber())){
+        else if(!isChecksumValid(accountValidated)){
             accountValidated += " ERR";
-            entryValidated.setAccountNumber(accountValidated);
+//            accountValidated.setAccountNumber(accountValidated);
         }
-        return entry;
+        return accountValidated;
 
     }
     public boolean isChecksumValid(final String account){

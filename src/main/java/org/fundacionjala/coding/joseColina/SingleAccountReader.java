@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EntryReader {
+public class SingleAccountReader {
     private static final int NUMBER_OF_DIGITS_BY_ENTRY = 9;
     private static final int WIDTH_OF_DIGITS = 3;
     private String accountNumber;
@@ -50,20 +50,18 @@ public class EntryReader {
                             " _|" +
                             "   ", 9);}};
 
-    public EntryReader(){
-        accountNumber =  "";
-    }
+    public SingleAccountReader(){}
 
     public String readAccountNumber(final List<String> entryLines){
         accountNumber =  "";
         int startOfDigit = 0;
         for(int i = 0; i < NUMBER_OF_DIGITS_BY_ENTRY; i ++){
-            String digit = "";
+            String stringOfDigit = "";
             for(String line : entryLines){
-                digit += line.substring(startOfDigit, startOfDigit + WIDTH_OF_DIGITS);
+                stringOfDigit += line.substring(startOfDigit, startOfDigit + WIDTH_OF_DIGITS);
             }
-            if(MAP_OF_DIGITS.get(digit)!= null){
-                accountNumber += MAP_OF_DIGITS.get(digit);
+            if(MAP_OF_DIGITS.get(stringOfDigit)!= null){
+                accountNumber += MAP_OF_DIGITS.get(stringOfDigit);
             }
             else {
                 accountNumber += "?";

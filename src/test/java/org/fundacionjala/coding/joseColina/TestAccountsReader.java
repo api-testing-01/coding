@@ -8,20 +8,20 @@ import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
-public class TestEntriesFile {
+public class TestAccountsReader {
     @Test
-    public void testReadEntries(){
+    public void testReadAccounts(){
         String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\joseColina\\";
         String filePath = resourcePath + "entries.txt";
-        EntriesFile entriesFile = new EntriesFile(filePath);
-        String s1 = "000000000";
-        String s2 = "111111111";
+        AccountsReader accountsReader = new AccountsReader(filePath);
+        String s1 = "000000000 ERR";
+        String s2 = "111111111 ERR";
         String[] expectedEntries = {s1, s2};
-        entriesFile.readEntries();
-        List<Entry> entries = entriesFile.getEntries();
+        List<Account> entries = accountsReader.readAccounts(filePath);
         String[] actualEntries = new String[entries.size()];
         for(int i =0; i < entries.size(); i++){
             actualEntries[i] = entries.get(i).getAccountNumber();
+            System.out.println(actualEntries[i]);
         }
         assertTrue(Arrays.deepEquals(expectedEntries, actualEntries));
     }
@@ -30,10 +30,9 @@ public class TestEntriesFile {
         String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\joseColina\\";
         String filePath = resourcePath + "entries.txt";
         String filePathToWrite = resourcePath + "results.txt";
-        EntriesFile entriesFile = new EntriesFile(filePath);
-        entriesFile.readEntries();
-        entriesFile.validateEntries();
-        entriesFile.writeToFile(filePathToWrite);
+        AccountsReader accountsReader = new AccountsReader(filePath);
+        accountsReader.readEntryLines();
+        accountsReader.writeToFile(filePathToWrite);
 
     }
 }

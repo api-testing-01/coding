@@ -2,15 +2,16 @@ package org.fundacionjala.coding.joseColina;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class EntryFixer {
+public class SingleAccountFixer {
     private static final int WIDTH_OF_DIGIT = 3;
 
-    public Entry fixEntry(final Entry entry){
-        Entry entryFixed = new Entry(entry.getLines());
-        List<String> entryLines = new ArrayList<>(entry.getLines());
+    public Account fixAccount(final Account account){
+        Account accountFixed = new Account(account);
+        List<String> entryLines = new ArrayList<>(account.getLines());
         List<String> accountsResults = new ArrayList<>();
-        EntryValidator validator = new EntryValidator();
+        AccountValidator validator = new AccountValidator();
         for (int i=0; i < entryLines.size() - 1; i++){
             int offset = 0;
             int lengthOfLine = entryLines.get(i).length();
@@ -24,18 +25,24 @@ public class EntryFixer {
                 System.out.println(linesFixed.get(3).toString());
 */
 
-                Entry entryValidated = validator.validateEntry(new Entry(linesFixed));
-                String account = entryValidated.getAccountNumber();
-                if(!account.contains("ILL") && !account.contains("ERR")){
-                    accountsResults.add(account);
+                Account accountValidated = new Account(linesFixed);
+                String accountNumber = accountValidated.getAccountNumber();
+                if(!accountNumber.contains("ILL") && !accountNumber.contains("ERR")){
+                    accountsResults.add(accountNumber);
                 }
                 offset = (j/WIDTH_OF_DIGIT)*WIDTH_OF_DIGIT;
             }
         }
-        String accountConcatenated = concatResults(entry.getAccountNumber(), accountsResults);
-        entryFixed.setAccountNumber(accountConcatenated);
-        System.out.println(entryFixed.getAccountNumber());
-        return entryFixed;
+        accountsResults = sortResults(accountsResults);
+        String accountConcatenated = concatResults(account.getAccountNumber(), accountsResults);
+        accountFixed.setAccountNumber(accountConcatenated);
+        System.out.println(accountFixed.getAccountNumber());
+        return accountFixed;
+    }
+
+    private List<String> sortResults(List<String> results) {
+        List<String> sortedResults = results.stream().sorted().collect(Collectors.toList());
+        return  sortedResults;
     }
 
     private List<String> getLinesFixed(int numberOfLine, int positionOfChar, int offset, List<String> entryLines) {
@@ -58,8 +65,9 @@ public class EntryFixer {
     private String concatResults(final String accountNumber, final List<String> results) {
         String accountResult = accountNumber;
         if(!results.isEmpty()){
+            accountResult = accountResult.substring(0, accountResult.length() - 4);
             if(results.size() > 1){
-                accountResult = accountNumber + " AMB [";
+                accountResult = accountResult + " AMB [";
                 for(int i =0; i< results.size(); i++){
                     accountResult +=  "'" + results.get(i) + "', ";
                 }

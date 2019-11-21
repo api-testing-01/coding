@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+
 import static org.junit.Assert.assertTrue;
 
-public class TestEntryFixer {
+public class TestAccountsFixer {
     private static List<String> lines;
     private static int NUMBER_OF_LINES = 4;
+
     @BeforeClass
     public static void SetUp(){
         String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\joseColina\\";
@@ -33,11 +35,15 @@ public class TestEntryFixer {
     @Test
     public void testFixEntryWithASingleResult(){
         List<String> results = new ArrayList<>();
-        EntryFixer fixer =  new EntryFixer();
+        List<Account> accountList = new ArrayList<>();
+        AccountsFixer fixer = new AccountsFixer();
         for(int i = 0; i < 16; i+=4){
-            Entry entry = new Entry(lines.subList(i, i + NUMBER_OF_LINES));
-            Entry entryFixed = fixer.fixEntry(entry);
-            results.add(entryFixed.getAccountNumber());
+            Account account = new Account(lines.subList(i, i + NUMBER_OF_LINES));
+            accountList.add(account);
+        }
+        accountList = fixer.fixAccounts(accountList);
+        for(Account accountFixed : accountList){
+            results.add(accountFixed.getAccountNumber());
         }
         Object[] actual = results.toArray();
         Object[] expected = {"711111111", "777777177", "200800000", "333393333"};
@@ -46,11 +52,15 @@ public class TestEntryFixer {
     @Test
     public void testFixEntryWithSeveralResults(){
         List<String> results = new ArrayList<>();
-        EntryFixer fixer =  new EntryFixer();
+        List<Account> accountList = new ArrayList<>();
+        AccountsFixer fixer = new AccountsFixer();
         for(int i = 16; i < 36; i+=4){
-            Entry entry = new Entry(lines.subList(i, i + NUMBER_OF_LINES));
-            Entry entryFixed = fixer.fixEntry(entry);
-            results.add(entryFixed.getAccountNumber());
+            Account account = new Account(lines.subList(i, i + NUMBER_OF_LINES));
+            accountList.add(account);
+        }
+        accountList = fixer.fixAccounts(accountList);
+        for(Account accountFixed : accountList){
+            results.add(accountFixed.getAccountNumber());
         }
         Object[] actual = results.toArray();
         Object[] expected = {"888888888 AMB ['888886888', '888888880', '888888988']",
@@ -63,11 +73,15 @@ public class TestEntryFixer {
     @Test
     public void testFixEntryWithSingleResultFromILL(){
         List<String> results = new ArrayList<>();
-        EntryFixer fixer =  new EntryFixer();
+        List<Account> accountList = new ArrayList<>();
+        AccountsFixer fixer = new AccountsFixer();
         for(int i = 36; i < 48; i+=4){
-            Entry entry = new Entry(lines.subList(i, i + NUMBER_OF_LINES));
-            Entry entryFixed = fixer.fixEntry(entry);
-            results.add(entryFixed.getAccountNumber());
+            Account account = new Account(lines.subList(i, i + NUMBER_OF_LINES));
+            accountList.add(account);
+        }
+        accountList = fixer.fixAccounts(accountList);
+        for(Account accountFixed : accountList){
+            results.add(accountFixed.getAccountNumber());
         }
         Object[] actual = results.toArray();
         Object[] expected = {"123456789", "000000051", "490867715"};

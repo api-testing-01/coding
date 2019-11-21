@@ -13,12 +13,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class TestEntryValidator {
+public class TestAccountValidator {
     private static List<String> lines;
-    private static EntryValidator entryValidator;
+    private static AccountValidator accountValidator;
     @BeforeClass
     public static void setup(){
-        entryValidator = new EntryValidator();
+        accountValidator = new AccountValidator();
         String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\";
         String filePath = resourcePath + "joseColina/entriesToValidate.txt";
         lines = new ArrayList<>();
@@ -36,32 +36,35 @@ public class TestEntryValidator {
     @Test
     public void testChecksumValid(){
         String accountNumber = "999215817";
-        assertTrue(entryValidator.isChecksumValid(accountNumber));
+        assertTrue(accountValidator.isChecksumValid(accountNumber));
     }
     @Test
     public void testChecksumNotValid(){
         String accountNumber = "999215810";
-        assertFalse(entryValidator.isChecksumValid(accountNumber));
+        assertFalse(accountValidator.isChecksumValid(accountNumber));
     }
     @Test
     public void testEntryValidatorWithQuestionMarkInEntry(){
-        Entry entry = new Entry(lines.subList(0, 4));
+//        Account account = new Account(lines.subList(0, 4));
+        String accountNumber = "999??58?0";
         String expected = "999??58?0 ILL";
-        String actual = entryValidator.validateEntry(entry).getAccountNumber();
+        String actual = accountValidator.validateAccountNumber(accountNumber);
         assertEquals(expected, actual);
     }
     @Test
     public void testEntryValidatorWitInvalidChecksum(){
-        Entry entry = new Entry(lines.subList(4, 8));
+//        Account account = new Account(lines.subList(4, 8));
+        String accountNumber = "999215810";
         String expected = "999215810 ERR";
-        String actual = entryValidator.validateEntry(entry).getAccountNumber();
+        String actual = accountValidator.validateAccountNumber(accountNumber);
         assertEquals(expected, actual);
     }
     @Test
     public void testEntryValidatorWithValidChecksum(){
-        Entry entry = new Entry(lines.subList(8, 12));
+//        Account account = new Account(lines.subList(8, 12));
+        String accountNumber = "999215817";
         String expected = "999215817";
-        String actual = entryValidator.validateEntry(entry).getAccountNumber();
+        String actual = accountValidator.validateAccountNumber(accountNumber);
         assertEquals(expected, actual);
     }
 }
