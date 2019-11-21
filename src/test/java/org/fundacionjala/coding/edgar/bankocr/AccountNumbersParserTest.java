@@ -28,18 +28,20 @@ public class AccountNumbersParserTest {
     @Test
     public void testParseDigit() {
 
+        String sb = "Cannot parse digit";
+
         List<char[][]> testDigits = getTestDigits();
 
-        assertEquals("Cannot parse digit", '0', AccountNumbersParser.parseDigit(testDigits.get(0)));
-        assertEquals("Cannot parse digit", '1', AccountNumbersParser.parseDigit(testDigits.get(1)));
-        assertEquals("Cannot parse digit", '2', AccountNumbersParser.parseDigit(testDigits.get(2)));
-        assertEquals("Cannot parse digit", '3', AccountNumbersParser.parseDigit(testDigits.get(3)));
-        assertEquals("Cannot parse digit", '4', AccountNumbersParser.parseDigit(testDigits.get(4)));
-        assertEquals("Cannot parse digit", '5', AccountNumbersParser.parseDigit(testDigits.get(5)));
-        assertEquals("Cannot parse digit", '6', AccountNumbersParser.parseDigit(testDigits.get(6)));
-        assertEquals("Cannot parse digit", '7', AccountNumbersParser.parseDigit(testDigits.get(7)));
-        assertEquals("Cannot parse digit", '8', AccountNumbersParser.parseDigit(testDigits.get(8)));
-        assertEquals("Cannot parse digit", '9', AccountNumbersParser.parseDigit(testDigits.get(9)));
+        assertEquals(sb, '0', AccountNumbersParser.parseDigit(testDigits.get(0)));
+        assertEquals(sb, '1', AccountNumbersParser.parseDigit(testDigits.get(1)));
+        assertEquals(sb, '2', AccountNumbersParser.parseDigit(testDigits.get(2)));
+        assertEquals(sb, '3', AccountNumbersParser.parseDigit(testDigits.get(3)));
+        assertEquals(sb, '4', AccountNumbersParser.parseDigit(testDigits.get(4)));
+        assertEquals(sb, '5', AccountNumbersParser.parseDigit(testDigits.get(5)));
+        assertEquals(sb, '6', AccountNumbersParser.parseDigit(testDigits.get(6)));
+        assertEquals(sb, '7', AccountNumbersParser.parseDigit(testDigits.get(7)));
+        assertEquals(sb, '8', AccountNumbersParser.parseDigit(testDigits.get(8)));
+        assertEquals(sb, '9', AccountNumbersParser.parseDigit(testDigits.get(9)));
     }
 
     private List<char[][]> getTestDigits() {
