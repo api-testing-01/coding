@@ -24,26 +24,25 @@ public class TestTransferAccounts {
     private static List<String> expectedList;
 
     @BeforeClass
-    public static void SetUp(){
+    public static void SetUp() {
         resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\joseColina\\";
         inputFile = resourcePath + "input.txt";
         actualResultPath = resourcePath + "output.txt";
         expectedPath = resourcePath + "expected.txt";
         actualFile = new File(actualResultPath);
         expectedFile = new File(expectedPath);
-        if(actualFile.exists() && !actualFile.isDirectory()){
+        if (actualFile.exists() && !actualFile.isDirectory()) {
             actualFile.delete();
         }
-        try{
+        try {
             actualFile.createNewFile();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error creating file: " + e.getMessage());
         }
     }
 
     @Test
-    public void testTransferAccounts(){
+    public void testTransferAccounts() {
         TransferAccounts transferAccounts = new TransferAccounts();
         transferAccounts.transferAccounts(inputFile, actualResultPath);
         actualList = new ArrayList<>();
@@ -55,8 +54,8 @@ public class TestTransferAccounts {
 
     }
 
-    public void readFiles(){
-        try{
+    public void readFiles() {
+        try {
             Scanner actualScanner = new Scanner(actualFile);
             Scanner expectedScanner = new Scanner(expectedFile);
             while (actualScanner.hasNextLine()) {
@@ -65,8 +64,7 @@ public class TestTransferAccounts {
             while (expectedScanner.hasNextLine()) {
                 expectedList.add(expectedScanner.nextLine());
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error opening file: " + e.getMessage());
             Assert.fail();
         }

@@ -9,13 +9,13 @@ public class TransferAccounts {
     private String inputPath;
     private String outputPath;
 
-    public TransferAccounts(){
+    public TransferAccounts() {
         reader = new AccountsReader();
-        writer =  new AccountsWriter();
+        writer = new AccountsWriter();
         fixer = new AccountsFixer();
     }
 
-    public void transferAccounts(final String inputPath,final String outputPath){
+    public void transferAccounts(final String inputPath, final String outputPath) {
         this.inputPath = inputPath;
         this.outputPath = outputPath;
         List<Account> accounts = reader.readAccounts(inputPath);

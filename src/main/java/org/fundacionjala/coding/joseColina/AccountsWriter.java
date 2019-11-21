@@ -9,14 +9,14 @@ import java.util.List;
 
 public class AccountsWriter {
 
-    public void writeToFile(String path, List<Account> accounts){
+    public void writeToFile(String path, List<Account> accounts) {
         String allEntries = "";
-        for(Account account : accounts){
+        for (Account account : accounts) {
             allEntries += account.getAccountNumber() + "\n";
         }
         try {
             Files.write(Paths.get(path), allEntries.getBytes(), StandardOpenOption.APPEND);
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("Error writing file: " + e.getMessage());
         }
     }

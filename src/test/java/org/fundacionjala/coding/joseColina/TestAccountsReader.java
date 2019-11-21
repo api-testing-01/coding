@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 
 public class TestAccountsReader {
     @Test
-    public void testReadAccounts(){
+    public void testReadAccounts() {
         String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\joseColina\\";
         String filePath = resourcePath + "entries.txt";
         AccountsReader accountsReader = new AccountsReader();
@@ -19,7 +19,7 @@ public class TestAccountsReader {
         String[] expectedEntries = {s1, s2};
         List<Account> entries = accountsReader.readAccounts(filePath);
         String[] actualEntries = new String[entries.size()];
-        for(int i =0; i < entries.size(); i++){
+        for (int i = 0; i < entries.size(); i++) {
             actualEntries[i] = entries.get(i).getAccountNumber();
             System.out.println(actualEntries[i]);
         }

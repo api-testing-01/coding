@@ -12,47 +12,46 @@ public class AccountsReader {
     private File file;
     private Scanner scanner;
 
-    public AccountsReader(){
+    public AccountsReader() {
         accounts = new ArrayList<>();
         this.path = path;
     }
 
-    public List<Account> readAccounts(String path){
+    public List<Account> readAccounts(String path) {
         cleanAccounts();
         this.path = path;
         List<List> entryLines = readEntryLines();
-        for(List<String> lines : entryLines){
+        for (List<String> lines : entryLines) {
             Account account = new Account(lines);
             accounts.add(account);
         }
         return accounts;
     }
 
-    public List<List> readEntryLines(){
+    public List<List> readEntryLines() {
         List<String> accountLines = new ArrayList<>();
         List<List> entries = new ArrayList<>();
         file = new File(path);
-        try{
+        try {
             scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
-                for(int i = 0; i < NUMBER_OF_LINES_PER_ENTRY; i++ ){
+                for (int i = 0; i < NUMBER_OF_LINES_PER_ENTRY; i++) {
                     accountLines.add(scanner.nextLine());
                 }
                 entries.add(new ArrayList(accountLines));
                 accountLines.clear();
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error reading file: " + e.getMessage());
         }
         return entries;
     }
 
-    public List<Account> getAccounts(){
+    public List<Account> getAccounts() {
         return accounts;
     }
 
-    public void cleanAccounts(){
+    public void cleanAccounts() {
         accounts.clear();
     }
 

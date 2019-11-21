@@ -17,49 +17,50 @@ public class TestAccountsFixer {
     private static int NUMBER_OF_LINES = 4;
 
     @BeforeClass
-    public static void SetUp(){
+    public static void SetUp() {
         String resourcePath = Paths.get(".").toAbsolutePath().normalize().toString() + "\\src\\test\\resources\\joseColina\\";
         String filePath = resourcePath + "entriesToBeFixed.txt";
         lines = new ArrayList<>();
         File file = new File(filePath);
-        try{
+        try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 lines.add(scanner.nextLine());
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error opening file: " + e.getMessage());
         }
     }
+
     @Test
-    public void testFixEntryWithASingleResult(){
+    public void testFixEntryWithASingleResult() {
         List<String> results = new ArrayList<>();
         List<Account> accountList = new ArrayList<>();
         AccountsFixer fixer = new AccountsFixer();
-        for(int i = 0; i < 16; i+=4){
+        for (int i = 0; i < 16; i += 4) {
             Account account = new Account(lines.subList(i, i + NUMBER_OF_LINES));
             accountList.add(account);
         }
         accountList = fixer.fixAccounts(accountList);
-        for(Account accountFixed : accountList){
+        for (Account accountFixed : accountList) {
             results.add(accountFixed.getAccountNumber());
         }
         Object[] actual = results.toArray();
         Object[] expected = {"711111111", "777777177", "200800000", "333393333"};
         assertTrue(Arrays.deepEquals(actual, expected));
     }
+
     @Test
-    public void testFixEntryWithSeveralResults(){
+    public void testFixEntryWithSeveralResults() {
         List<String> results = new ArrayList<>();
         List<Account> accountList = new ArrayList<>();
         AccountsFixer fixer = new AccountsFixer();
-        for(int i = 16; i < 36; i+=4){
+        for (int i = 16; i < 36; i += 4) {
             Account account = new Account(lines.subList(i, i + NUMBER_OF_LINES));
             accountList.add(account);
         }
         accountList = fixer.fixAccounts(accountList);
-        for(Account accountFixed : accountList){
+        for (Account accountFixed : accountList) {
             results.add(accountFixed.getAccountNumber());
         }
         Object[] actual = results.toArray();
@@ -70,17 +71,18 @@ public class TestAccountsFixer {
                 "490067715 AMB ['490067115', '490067719', '490867715']"};
         assertTrue(Arrays.deepEquals(actual, expected));
     }
+
     @Test
-    public void testFixEntryWithSingleResultFromILL(){
+    public void testFixEntryWithSingleResultFromILL() {
         List<String> results = new ArrayList<>();
         List<Account> accountList = new ArrayList<>();
         AccountsFixer fixer = new AccountsFixer();
-        for(int i = 36; i < 48; i+=4){
+        for (int i = 36; i < 48; i += 4) {
             Account account = new Account(lines.subList(i, i + NUMBER_OF_LINES));
             accountList.add(account);
         }
         accountList = fixer.fixAccounts(accountList);
-        for(Account accountFixed : accountList){
+        for (Account accountFixed : accountList) {
             results.add(accountFixed.getAccountNumber());
         }
         Object[] actual = results.toArray();
