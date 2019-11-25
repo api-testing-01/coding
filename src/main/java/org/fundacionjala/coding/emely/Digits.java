@@ -29,14 +29,7 @@ public final class Digits {
             for (int col = 0; col < data.get(row).length() / DIGITNUMBER; col++) {
                 for (int i = 0; i < OPTIONS; i++) {
                     boolean found = true;
-                    for (int j = 0; j < DIGITNUMBER; j++) {
-                        if (!data.get(DIGITNUMBER * row + j).substring(DIGITNUMBER * col, DIGITNUMBER * (col + 1))
-                                .equals(info.substring(DIGITNUMBER * (OPTIONS * j + i),
-                                        DIGITNUMBER * (OPTIONS * j + i + 1)))) {
-                            found = false;
-                            break;
-                        }
-                    }
+                    found = compareDigits(data, row, col, i);
                     if (found) {
                         res[row].append(i);
                         break;
@@ -48,5 +41,18 @@ public final class Digits {
             }
         }
         return String.join(",", res);
+    }
+
+    private static boolean compareDigits(final List<String> data, int row, int col, int options) {
+        boolean found = true;
+        for (int j = 0; j < DIGITNUMBER; j++) {
+            if (!data.get(DIGITNUMBER * row + j).substring(DIGITNUMBER * col, DIGITNUMBER * (col + 1))
+                    .equals(info.substring(DIGITNUMBER * (OPTIONS * j + options),
+                            DIGITNUMBER * (OPTIONS * j + options + 1)))) {
+                found = false;
+                break;
+            }
+        }
+        return found;
     }
 }

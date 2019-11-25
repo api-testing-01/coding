@@ -24,5 +24,4 @@ public class ValidatorTest {
         Boolean isValid = Validator.validateAccount(accountNumber);
         Assert.assertFalse(isValid);
     }
-
 }
