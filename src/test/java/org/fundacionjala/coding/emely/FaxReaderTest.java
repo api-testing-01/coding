@@ -12,7 +12,7 @@ public class FaxReaderTest {
 
         File file = new File("src/test/resources/emely/faxNumber.txt");
         String accountNumber = FaxReader.getNumbers(file);
-        Assert.assertEquals("The number cannot be read", "1234567890", accountNumber);
+        Assert.assertEquals("1234567890", accountNumber);
     }
 
     @Test
@@ -20,7 +20,7 @@ public class FaxReaderTest {
 
         File file = new File("src/test/resources/emely/faxNumberZero.txt");
         String accountNumber = FaxReader.getNumbers(file);
-        Assert.assertEquals("The number cannot be read", "0000000000", accountNumber);
+        Assert.assertEquals("0000000000", accountNumber);
     }
 
     @Test
@@ -28,6 +28,6 @@ public class FaxReaderTest {
 
         File file = new File("src/test/resources/emely/faxNumberOne.txt");
         String accountNumber = FaxReader.getNumbers(file);
-        Assert.assertEquals("The number cannot be read", "1111111111", accountNumber);
+        Assert.assertEquals("1111111111", accountNumber);
     }
 }
