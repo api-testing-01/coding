@@ -7,21 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class FaxReader {
+public final class FaxReader {
 
-    public static String getNumbers(File file) throws IOException {
+    private static final int ROWSNUMBER = 3;
+
+    private FaxReader() {
+    }
+
+    public static String getNumbers(final File file) throws IOException {
         List<String> digits = readLines(file);
         String result = Digits.parse(digits);
         return result;
     }
 
-    private static List<String> readLines(File file) throws IOException {
+    private static List<String> readLines(final File file) throws IOException {
 
         List<String> lines = new ArrayList<>();
 
         try {
             Scanner scanner = new Scanner(file);
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < ROWSNUMBER; i++) {
                 String line = scanner.nextLine();
                 if (line != null) {
                     lines.add(line);

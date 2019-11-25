@@ -4,26 +4,35 @@ import java.util.List;
 
 public final class Digits {
 
+    private static final int ROWSNUMBER = 3;
+    private static final int DIGITNUMBER = 3;
+    private static final int OPTIONS = 10;
+
+    private Digits() {
+    }
+
     private static String info =
-            " _     _  _     _  _  _  _  _ " +
-                    "| |  | _| _||_||_ |_   ||_||_|" +
-                    "|_|  ||_  _|  | _||_|  ||_| _|" +
-                    "                              ";
+            " _     _  _     _  _  _  _  _ "
+                    + "| |  | _| _||_||_ |_   ||_||_|"
+                    + "|_|  ||_  _|  | _||_|  ||_| _|"
+                    + "                              ";
 
-    public static String parse(List<String> data) {
-        if (data.size() % 3 != 0)
-            throw new IllegalArgumentException("Number of input rows must be a positive multiple of 3");
+    public static String parse(final List<String> data) {
+        if (data.size() % ROWSNUMBER != 0) {
+            throw new IllegalArgumentException("Number of input rows must be a positive multiple of " + ROWSNUMBER);
+        }
 
-        StringBuilder res[] = new StringBuilder[data.size() / 3];
+        StringBuilder[] res = new StringBuilder[data.size() / ROWSNUMBER];
 
-        for (int row = 0; row < data.size() / 3; row++) {
+        for (int row = 0; row < data.size() / ROWSNUMBER; row++) {
             res[row] = new StringBuilder();
-            for (int col = 0; col < data.get(row).length() / 3; col++) {
-                for (int i = 0; i < 10; i++) {
+            for (int col = 0; col < data.get(row).length() / DIGITNUMBER; col++) {
+                for (int i = 0; i < OPTIONS; i++) {
                     boolean found = true;
-                    for (int j = 0; j < 3; j++) {
-                        if (!data.get(4 * row + j).substring(3 * col, 3 * (col + 1))
-                                .equals(info.substring(3 * (10 * j + i), 3 * (10 * j + i + 1)))) {
+                    for (int j = 0; j < DIGITNUMBER; j++) {
+                        if (!data.get(DIGITNUMBER * row + j).substring(DIGITNUMBER * col, DIGITNUMBER * (col + 1))
+                                .equals(info.substring(DIGITNUMBER * (OPTIONS * j + i),
+                                        DIGITNUMBER * (OPTIONS * j + i + 1)))) {
                             found = false;
                             break;
                         }
@@ -32,7 +41,9 @@ public final class Digits {
                         res[row].append(i);
                         break;
                     }
-                    if (i == 9) res[row].append('?');
+                    if (i == OPTIONS - 1) {
+                        res[row].append('?');
+                    }
                 }
             }
         }
