@@ -16,8 +16,7 @@ public final class FaxReader {
 
     public static String getNumbers(final File file) throws IOException {
         List<String> digits = readLines(file);
-        String result = Digits.parse(digits);
-        return result;
+        return Digits.parse(digits);
     }
 
     private static List<String> readLines(final File file) throws IOException {
